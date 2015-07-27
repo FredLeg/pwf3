@@ -2,6 +2,7 @@
 
 class Post extends Model {
 
+	protected $id;
 	protected $author;
 	protected $title;
 	protected $content;

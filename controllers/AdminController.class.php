@@ -24,39 +24,67 @@ class AdminController extends BaseAdminController {
 		$table = new Table('data-table', 'post', $posts, array('id', 'title', 'author', 'date'), ROOT_HTTP.'admin/post/edit', ROOT_HTTP.'admin/post/delete');
 
 		$vars = array(
-			'posts' => $posts,
+			'name' => 'Posts',
 			'table' => $table->render()
 		);
 
-		$this->render('admin/post', $vars);
-	}
-
-	public function user() {
-
-		$users = User::getList('SELECT * FROM user ORDER BY name ASC');
-
-		$table = new Table('data-table', 'user', $users, array('id', 'school_id', 'group_id', 'name', 'titre', 'photo', 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
-
-		$vars = array(
-			'users' => $users,
-			'table' => $table->render()
-		);
-
-		$this->render('admin/user', $vars);
+		$this->render('admin/baseTable', $vars);
 	}
 
 	public function contact() {
 
-		$contacts = Contact::getList('SELECT * FROM contact ORDER BY lastname, firstname');
+		$data = Contact::getList('SELECT * FROM contact ORDER BY lastname, firstname');
 
-		$table = new Table('data-table', 'contact', $contacts, array('id', 'firstname', 'lastname', 'message'), ROOT_HTTP.'admin/contact/edit', ROOT_HTTP.'admin/contact/delete');
+		$table = new Table('data-table', 'contact', $data, array('id', 'firstname', 'lastname', 'message'), ROOT_HTTP.'admin/contact/edit', ROOT_HTTP.'admin/contact/delete');
 
 		$vars = array(
-			'contacts' => $contacts,
+			'name' => 'Contacts',
 			'table' => $table->render()
 		);
 
 		$this->render('admin/contact', $vars);
+	}
+
+	public function user() {
+
+		$data = User::getList('SELECT * FROM user ORDER BY name ASC');
+
+		$table = new Table('data-table', 'user', $data, array('id', 'school_id', 'group_id', 'name', 'titre', 'photo', 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
+
+		$vars = array(
+			'name' => 'Utilisateurs',
+			'table' => $table->render()
+		);
+
+		$this->render('admin/baseTable', $vars);
+	}
+
+	public function school() {
+
+		$data = School::getList('SELECT * FROM school ORDER BY name ASC');
+
+		$table = new Table('data-table', 'school', $data, array('id', 'name', 'address', 'phone', 'date_creation'), ROOT_HTTP.'admin/school/edit', ROOT_HTTP.'admin/school/delete');
+
+		$vars = array(
+			'name' => 'Ecoles',
+			'table' => $table->render()
+		);
+
+		$this->render('admin/baseTable', $vars);
+	}
+
+	public function session() {
+
+		$data = Session::getList('SELECT * FROM session ORDER BY name ASC');
+
+		$table = new Table('data-table', 'school', $data, array('id', 'name', 'address', 'phone', 'date_creation'), ROOT_HTTP.'admin/school/edit', ROOT_HTTP.'admin/school/delete');
+
+		$vars = array(
+			'name' => 'Ecoles',
+			'table' => $table->render()
+		);
+
+		$this->render('admin/baseTable', $vars);
 	}
 
 	public function contact_edit() {

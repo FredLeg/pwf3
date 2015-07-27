@@ -2,7 +2,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">User</h1>
+                        <h1 class="page-header">{$name}</h1>
 
 						{if isset($table)}
                              {$table}
