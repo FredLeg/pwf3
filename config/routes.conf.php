@@ -29,5 +29,13 @@ $routes = array(
 	'admin/contact/delete/([0-9\-]+)' => array(
 		'target' => 'admin',
 		'action' => 'contact_delete'
+	),
+	'login' => array(
+		'target' => 'logger',
+		'action' => 'login'
+	),
+	'logout' => array(
+		'target' => 'logger',
+		'action' => 'logout'
 	)
 );
