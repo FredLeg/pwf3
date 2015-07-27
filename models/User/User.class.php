@@ -1,14 +1,23 @@
 <?php
 class User extends Model {
 
-	private $school_id;
-	private $group_id;
-	private $name;
-	private $titre;
-	private $photo;
-	private $email;
-	private $phone;
-	private $infos;
+	protected $id;
+	protected $school_id;
+	protected $group_id;
+	protected $name;
+	protected $titre;
+	protected $photo;
+	protected $email;
+	protected $phone;
+	protected $infos;
+
+	private $session;
+
+	public function __construct($data = array()) {
+		parent::__construct($data);
+
+		$this->session = Session::getInstance();
+	}
 
 	public function getId() {
 		return $this->id;
@@ -65,5 +74,80 @@ class User extends Model {
 	public function setInfos($infos) {
 		$this->infos = $infos;
 	}
+
+	public static function isLogged() {
+		return Session::getInstance()->user_id;
+	}
+
+	public function checkRememberMe() {
+
+		$remember_me = Authent::getRememberMe();
+
+		if ($remember_me !== false) {
+
+			$user_id = $remember_me;
+
+			$user = self::get($user_id);
+
+			if (!empty($user)) {
+
+				$this->session->user_id = $user->id;
+				$this->session->firstname = $user->firstname;
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public function checkLogin($remember_me = false) {
+
+		$result = Db::selectOne('SELECT * FROM user WHERE email = :email', array('email' => $this->email));
+
+
+		if (!empty($result)) {
+
+			$user = new User($result);
+
+			$crypted_password = $user->password;
+
+			if (password_verify($this->password, $crypted_password)) {
+
+				if (!empty($remember_me)) {
+					Authent::setRememberMe($user->id);
+				}
+
+				$this->session->user_id = $user->id;
+				$this->session->firstname = $user->firstname;
+
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function checkAlreadyExists() {
+		if (empty($this->email)) {
+			return false;
+		}
+		$user = Db::select('SELECT * FROM user WHERE email = :email', array('email' => $this->email));
+		if (!empty($user)) {
+			return true;
+		}
+		return false;
+	}
+
+	public function register() {
+		return Db::insert('INSERT INTO user (lastname, firstname, email, password, newsletter, cgu, register_date) VALUES (:lastname, :firstname, :email, :password, :newsletter, :cgu, NOW())', array(
+					'lastname' => $this->lastname,
+					'firstname' => $this->firstname,
+					'email' => $this->email,
+					'password' => $this->password,
+					'newsletter' => $this->newsletter,
+					'cgu' => $this->cgu
+				));
+	}
+
 
 }
