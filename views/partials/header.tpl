@@ -18,17 +18,25 @@
 <body>
 
 	<div class="blog-masthead">
-		<div class="container">
+		<div class="container" id="logo">
+
 			<nav class="nav navbar-nav blog-nav">
-				{foreach from=$pages item=page}
+
+				<h1 class="logowf3" >WEBFORCE 3</h1>
+
+				<!--{foreach from=$pages item=page}
 				<a class="blog-nav-item {if $page.url == $current_page || $page.url == $target || $page.url == "$target/$action"}active{/if}" href="{$HTTP_ROOT}{$page.url}">{$page.name}</a>
-				{/foreach}
+				{/foreach} -->
 			</nav>
 
 			<nav class="nav navbar-nav navbar-right blog-nav">
+				<span class="glyphicon glyphicon-log-in " aria-hidden="true"> Se connecter</span>
+			</nav>
+
+			<!-- <nav class="nav navbar-nav navbar-right blog-nav">
 				<a href="{$HTTP_ROOT}../fr/{$current_page}{$querystring}" class="blog-nav-item{if $lang == 'fr'} active{/if}">FR</a>
 				<a href="{$HTTP_ROOT}../en/{$current_page}{$querystring}" class="blog-nav-item{if $lang == 'en'} active{/if}">EN</a>
-			</nav>
+			</nav> -->
 		</div>
 	</div>
 
