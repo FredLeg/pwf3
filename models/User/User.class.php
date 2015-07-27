@@ -1,64 +1,69 @@
 <?php
 class User extends Model {
 
-	private $id;
-	private $fb_id;
-	private $firstname;
-	private $lastname;
+	private $school_id;
+	private $group_id;
+	private $name;
+	private $titre;
+	private $photo;
 	private $email;
-	private $pass;
-	private $status;
-	private $newsletter;
-	private $register_date;
+	private $phone;
+	private $infos;
 
 	public function getId() {
 		return $this->id;
 	}
-	public function getFbId() {
-		return $this->fb_id;
+	public function getSchoolId() {
+		return $this->school_id;
 	}
-	public function getFirstname() {
-		return $this->firstname;
+	public function getGroupId() {
+		return $this->group_id;
 	}
-	public function getLastname() {
-		return $this->lastname;
+	public function getname() {
+		return $this->name;
+	}
+	public function getTitre() {
+		return $this->titre;
+	}
+	public function getPhoto() {
+		return $this->photo;
 	}
 	public function getEmail() {
 		return $this->email;
 	}
-	public function getStatus() {
-		return $this->status;
+	public function getPhone() {
+		return $this->phone;
 	}
-	public function getNewsletter() {
-		return $this->newsletter;
-	}
-	public function getRegisterDate() {
-		return $this->register_date;
+	public function getInfos() {
+		return $this->infos;
 	}
 
 	public function setId($id) {
 		$this->id = $id;
 	}
-	public function setFbId($fb_id) {
-		$this->fb_id = $fb_id;
+	public function setSchoolId($school_id) {
+		$this->school_id = $school_id;
 	}
-	public function setFirstname($firstname) {
-		$this->firstname = $firstname;
+	public function setGroupId($group_id) {
+		$this->group_id = $group_id;
 	}
-	public function setLastname($lastname) {
-		$this->lastname = $lastname;
+	public function setName($name) {
+		$this->name = $name;
+	}
+	public function setTitre($titre) {
+		$this->titre = $titre;
+	}
+	public function setPhoto($photo) {
+		$this->photo = $photo;
 	}
 	public function setEmail($email) {
 		$this->email = $email;
 	}
-	public function setStatus($status) {
-		$this->status = $status;
+	public function setPhone($phone) {
+		$this->phone = $phone;
 	}
-	public function setNewsletter($newsletter) {
-		$this->newsletter = $newsletter;
-	}
-	public function setRegisterDate($register_date) {
-		$this->register_date = $register_date;
+	public function setInfos($infos) {
+		$this->infos = $infos;
 	}
 
 }

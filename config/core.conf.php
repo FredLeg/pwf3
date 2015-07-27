@@ -59,7 +59,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
 	define('DB_PASS', '');
 }
 define('DB_ENGINE', 'mysql');
-define('DB_NAME', 'blog');
+define('DB_NAME', 'pwf3');
 
 // ERRORS CONFIG
 error_reporting((CORE_DEBUG ? (E_ALL | E_STRICT) : 0));

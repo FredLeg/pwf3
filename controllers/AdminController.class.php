@@ -31,6 +31,20 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/post', $vars);
 	}
 
+	public function user() {
+
+		$users = User::getList('SELECT * FROM user ORDER BY name ASC');
+
+		$table = new Table('data-table', 'user', $users, array('id', 'school_id', 'group_id', 'name', 'titre', 'photo', 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
+
+		$vars = array(
+			'users' => $users,
+			'table' => $table->render()
+		);
+
+		$this->render('admin/user', $vars);
+	}
+
 	public function contact() {
 
 		$contacts = Contact::getList('SELECT * FROM contact ORDER BY lastname, firstname');
