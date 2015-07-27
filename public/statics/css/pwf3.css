@@ -1,11 +1,16 @@
-.prenom {
-  text-align: center;
-}
-
 body {
-    padding-top: 50px; /* necessary with header > navbar-fixed-top */
+    padding-top: 0px; /* necessary with header > navbar-fixed-top */
+
 }
 
+#logo {
+  line-height: 50px;
+  color: #fff;
+}
+.logowf3 {
+  line-height: 50px;
+  color: #fff;
+}
 
 /*Sidebar*/
 form.search {
