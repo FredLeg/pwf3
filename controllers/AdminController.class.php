@@ -12,9 +12,7 @@ class AdminController extends BaseAdminController {
 
 	public function index() {
 
-		$vars = array();
-
-		$this->render('admin/index', $vars);
+		$this->render('admin/index', []);
 	}
 
 
@@ -59,7 +57,7 @@ class AdminController extends BaseAdminController {
 
 		$data = User::getList('SELECT * FROM user ORDER BY name ASC');
 
-		$table = new Table('data-table', 'user', $data, array('id', 'school_id', 'group_id', 'name', 'titre', 'photo', 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
+		$table = new Table('data-table', 'user', $data, array(/*'id', 'school_id', 'group_id',*/ 'name', 'titre'/*, 'photo'*/, 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
 
 		$vars = array(
 			'name' => 'Utilisateurs',
