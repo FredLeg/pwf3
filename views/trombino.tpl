@@ -5,29 +5,114 @@
       <p class="lead blog-description">{$description}</p>
     </div>
 
+
     <div class="row">
-       <div class="col-md-3">
-        <p><img src="images/will-smith.jpg" alt="photo" class="img-thumbnail"></p>
-        <p>Nom & prénom : Will Smith</p>
-      </div>
+      <section class="article-content clearfix">
+        <div class>
+          <div id="nteam">
+            <div class="container">
 
-      <div class="col-md-3">
-        <p><img src="images/will-smith.jpg" alt="photo" class="img-thumbnail"></p>
-        <p>Nom & prénom : Will Smith</p>
-      </div>
+                   <div class="col-md-3">
+                      <div class="member">
+                        <div class="details">
+                          <a href="/Eric" target="_blank">
+                            <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
+                          </a>
+                          <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
+                          <h5 class="field">Etudiant</h5>
+                        </div>
+                      </div>
+                    </div>
 
-      <div class="col-md-3">
-        <p><img src="images/will-smith.jpg" alt="photo" class="img-thumbnail"></p>
-        <p>Nom & prénom : Will Smith</p>
-      </div>
+                    <div class="col-md-3">
+                       <div class="member">
+                         <div class="details">
+                           <a href="/Eric" target="_blank">
+                             <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
+                           </a>
+                           <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
+                           <h5 class="field">Etudiant</h5>
+                         </div>
+                       </div>
+                     </div>
 
-      <div class="col-md-3">
-        <p><img src="images/will-smith.jpg" alt="photo" class="img-thumbnail"></p>
-        <p>Nom & prénom : Will Smith</p>
-        <label class="radio-inline">
-          <input name="radioGroup" id="radio1" value="option1" type="radio"> 1
-      </div>
+
+                     <div class="col-md-3">
+                        <div class="member">
+                          <div class="details">
+                            <a href="/Eric" target="_blank">
+                              <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
+                            </a>
+                            <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
+                            <h5 class="field">Etudiant</h5>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-3">
+                         <div class="member">
+                           <div class="details">
+                             <a href="/Eric" target="_blank">
+                               <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
+                             </a>
+                             <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
+                             <h5 class="field">Etudiant</h5>
+                           </div>
+                         </div>
+                       </div>
+
+
+                       <div class="col-md-3">
+                          <div class="member">
+                            <div class="details">
+                              <a href="/Eric" target="_blank">
+                                <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
+                              </a>
+                              <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
+                              <h5 class="field">Etudiant</h5>
+                            </div>
+                          </div>
+                        </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
 
   </div><!-- /.row -->
+
+      <!--NAV PAGE-->
+
+      <div class="row">
+
+         <div class="col-md-12">
+            <ul class="pager pagenav">
+              <li class="previous">
+                <a href="/previous" rel="prev"><span class="icon-chevron-left"></span>Précédent</a>
+              </li>
+
+              <li class="next">
+                <a href="/next" rel="next"><span class="icon-chevron-right"></span>Suivant</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+      <!--END NAV PAGE-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 {include file="partials/footer.tpl"}
