@@ -14,53 +14,20 @@
 
                 {if !empty($students)}
                  {foreach $students as $student}
-                  <div class="col-md-3">
-                     <div class="member">
-                       <div class="details">
-                           <img class="img-thumbnail" alt="avatar" src="{$url_photos}/{$student->photo}" height="170px">
-                         </a>
-                         <a href="#"><h2 class="title">{$student->firstname}</h2></a>
+                    <div class="col-md-3">
+                       <div class="member">
+                         <div class="details">
+                             <img class="img-thumbnail" alt="avatar" src="{$url_photos}/{$student->photo}" height="170px">
+                           <a href="#"><h2 class="title">{$student->firstname}</h2></a>
+                         </div>
                        </div>
                      </div>
-                   </div>
                  {/foreach}
                  {/if}
-
             </div>
           </div>
         </div>
       </section>
 
-  </div><!-- /.row -->
-
-      <!--NAV PAGE-->
-
-      <div class="row">
-
-         <div class="col-md-12">
-            <ul class="pager pagenav">
-              <li class="previous">
-                <a href="/previous" rel="prev"><span class="icon-chevron-left"></span>Précédent</a>
-              </li>
-
-              <li class="next">
-                <a href="/next" rel="next"><span class="icon-chevron-right"></span>Suivant</a>
-              </li>
-            </ul>
-          </div>
-      </div>
-      <!--END NAV PAGE-->
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
 {include file="partials/footer.tpl"}

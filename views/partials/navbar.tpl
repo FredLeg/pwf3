@@ -11,7 +11,7 @@
 			</nav>
 
 			<nav class="nav navbar-nav navbar-right blog-nav">
-				<span class="glyphicon glyphicon-log-in " aria-hidden="true"> Se connecter</span>
+				<a href="#"><span class="glyphicon glyphicon-log-in " aria-hidden="true"> Se connecter</span></a>
 			</nav>
 		</div>
 	</div>
