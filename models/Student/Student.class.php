@@ -33,6 +33,16 @@ class Student extends Model {
 	public function getPhoto() {
 		return $this->photo;
 	}
+	public function getPathPhoto() {
+		if (is_null($this->photo) || empty($this->photo)) {
+			return 'avatar-'.$this->getSex().'.png';
+		}
+    	$path_path = $this->getSessionId().'/'.$this->photo;
+    	if (!file_exists(IMG_PATH.'trombino/'.$path_path)) {
+    		return 'avatar-'.$this->getSex().'.png';
+    	}
+    	return $path_path;
+	}
 	public function getDateBirth() {
 		return $this->date_birth;
 	}
