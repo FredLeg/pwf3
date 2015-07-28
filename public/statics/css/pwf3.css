@@ -12,9 +12,25 @@ body {
   color: #fff;
 }
 
+#se-logger {
+    color : #fff;
+}
+
 /*Sidebar*/
 form.search {
     margin-right: 110px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#description {
+    text-align: center;
+}
+
+.lead blog-description {
+    text-align : center;
 }
 
 /*Main*/
@@ -85,4 +101,15 @@ form.search {
 #nteam .details
 {
     text-align: center;
+}
+
+.control {
+    padding-left: 6px;
+}
+
+
+#checkbox-align {
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: -11px;
 }
