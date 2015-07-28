@@ -13,12 +13,12 @@
             <div class="container">
 
                 {if !empty($students)}
-                 {foreach $students as $student}
-                  <div class="col-md-3">
+                  {foreach $students as $student}
+                    <div class="col-md-3">
                      <div class="member">
                        <div class="details">
-                           <img class="img-thumbnail" alt="avatar" src="{$url_photos}/{$student->photo}" height="170px">0
-                         <a href="#"><h2 class="title">{$student->firstname}</h2></a>
+                           <img class="img-thumbnail" alt="avatar" src="{$url_trombino}{$student->getPathPhoto()}" height="170px">
+                           <a href="#"><h2 class="title">{$student->firstname}</h2></a>
                        </div>
                        <div class="controls">
 
@@ -30,7 +30,7 @@
                           <input type="checkbox" name="d2" class="checkbox-control"/>
                        </div>
                      </div>
-                   </div>
+                    </div>
                  {/foreach}
                  {/if}
             </div>
