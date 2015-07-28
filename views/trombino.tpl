@@ -17,15 +17,22 @@
                   <div class="col-md-3">
                      <div class="member">
                        <div class="details">
-                           <img class="img-thumbnail" alt="avatar" src="{$url_photos}/{$student->photo}" height="170px">
-                         </a>
+                           <img class="img-thumbnail" alt="avatar" src="{$url_photos}/{$student->photo}" height="170px">0
                          <a href="#"><h2 class="title">{$student->firstname}</h2></a>
+                       </div>
+                       <div class="controls">
+
+
+                          <div data-toggle="tooltip" data-placement="top" title="Absence"><input type="checkbox" name="a" class="checkbox-control"/></div>
+                          <input type="checkbox" name="r1" class="checkbox-control"/>
+                          <input type="checkbox" name="r2" class="checkbox-control"/>
+                          <input type="checkbox" name="d1" class="checkbox-control"/>
+                          <input type="checkbox" name="d2" class="checkbox-control"/>
                        </div>
                      </div>
                    </div>
                  {/foreach}
                  {/if}
-
             </div>
           </div>
         </div>
@@ -35,7 +42,7 @@
 
       <!--NAV PAGE-->
 
-      <div class="row">
+      <!--<div class="row">
 
          <div class="col-md-12">
             <ul class="pager pagenav">
@@ -48,7 +55,7 @@
               </li>
             </ul>
           </div>
-      </div>
+      </div>-->
       <!--END NAV PAGE-->
 
 
