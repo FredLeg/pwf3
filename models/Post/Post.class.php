@@ -2,10 +2,11 @@
 
 class Post extends Model {
 
-	private $author;
-	private $title;
-	private $content;
-	private $date;
+	protected $id;
+	protected $author;
+	protected $title;
+	protected $content;
+	protected $date;
 
 	/* Getters */
 	public function getId() {
