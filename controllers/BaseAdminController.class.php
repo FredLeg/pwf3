@@ -12,7 +12,11 @@ abstract class BaseAdminController extends BaseController {
 		$vars['pages'] = array(
 			'admin/index/' => array('Dashboard', 'fa-dashboard'),
             'admin/post/' => array('Posts', 'fa-file-text'),
-            'admin/contact/' => array('Contacts', 'fa-envelope')
+            'admin/contact/' => array('Contacts', 'fa-envelope'),
+            'admin/user/' => array('Utilisateurs', 'fa-file-text'),
+            'admin/school/' => array('Ecoles', 'fa-file-text'),
+            'admin/session/' => array('Sessions', 'fa-file-text'),
+            'admin/student/' => array('Étudiants', 'fa-file-text'),
 		);
 
 		$this->response->addVars($vars);

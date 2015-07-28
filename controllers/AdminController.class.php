@@ -42,10 +42,17 @@ class AdminController extends BaseAdminController {
 			'table' => $table->render()
 		);
 
-		$this->render('admin/contact', $vars);
+		$this->render('admin/baseTable', $vars);
 	}
 
 	public function user() {
+
+		$isPost = $this->request->isPost();
+
+		$params = $this->getParams();
+
+		//$action = $params[0]
+		//var_export($params);
 
 		$data = User::getList('SELECT * FROM user ORDER BY name ASC');
 
@@ -66,7 +73,7 @@ class AdminController extends BaseAdminController {
 		$table = new Table('data-table', 'school', $data, array('id', 'name', 'address', 'phone', 'date_creation'), ROOT_HTTP.'admin/school/edit', ROOT_HTTP.'admin/school/delete');
 
 		$vars = array(
-			'name' => 'Ecoles',
+			'name' => 'Écoles',
 			'table' => $table->render()
 		);
 
@@ -75,12 +82,26 @@ class AdminController extends BaseAdminController {
 
 	public function session() {
 
-		$data = Session::getList('SELECT * FROM session ORDER BY name ASC');
+		$data = School_Session::getList('SELECT * FROM session ORDER BY date_start ASC');
 
-		$table = new Table('data-table', 'school', $data, array('id', 'name', 'address', 'phone', 'date_creation'), ROOT_HTTP.'admin/school/edit', ROOT_HTTP.'admin/school/delete');
+		$table = new Table('data-table', 'school', $data, array('id', 'school_id', 'date_start', 'date_end'), ROOT_HTTP.'admin/session/edit', ROOT_HTTP.'admin/session/delete');
 
 		$vars = array(
-			'name' => 'Ecoles',
+			'name' => 'Sessions',
+			'table' => $table->render()
+		);
+
+		$this->render('admin/baseTable', $vars);
+	}
+
+	public function student() {
+
+		$data = Student::getList('SELECT * FROM student ORDER BY lastname ASC');
+
+		$table = new Table('data-table', 'student', $data, array('id', 'session_id', 'firstname', 'lastname', 'sex', 'photo', 'date_birth', 'num_pe', 'from_city', 'email', 'phone'), ROOT_HTTP.'admin/student/edit', ROOT_HTTP.'admin/student/delete');
+
+		$vars = array(
+			'name' => 'Étudiants',
 			'table' => $table->render()
 		);
 
