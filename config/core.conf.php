@@ -51,7 +51,7 @@ define('SESSION_DEFAULT_NAME', 'framework_session');
 // DB CONFIG
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
 	define('DB_HOST', '192.168.1.19');
-	define('DB_USER', 'man');
+	define('DB_USER', 'pwf3_user');
 	define('DB_PASS', '');
 } else {
 	define('DB_HOST', '');
