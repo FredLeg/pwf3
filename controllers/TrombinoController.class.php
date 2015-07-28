@@ -5,7 +5,7 @@ class TrombinoController extends BaseController {
 public function index() {
 
 	$session_id = 10;
-	$students = Student::getList( 'SELECT session_id, firstname, photo, sex FROM student WHERE session_id='.$session_id );
+	$students = Student::getList( 'SELECT session_id, firstname, photo, sex FROM student WHERE session_id='.$session_id.' ORDER BY firstname');
 
 	$vars = array(
 		'title' => 'Trombinoscope WebForce3',
