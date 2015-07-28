@@ -12,76 +12,24 @@
           <div id="nteam">
             <div class="container">
 
-                   <div class="col-md-3">
-                      <div class="member">
-                        <div class="details">
-                          <a href="/Eric" target="_blank">
-                            <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
-                          </a>
-                          <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
-                          <h5 class="field">Etudiant</h5>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3">
-                       <div class="member">
-                         <div class="details">
-                           <a href="/Eric" target="_blank">
-                             <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
-                           </a>
-                           <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
-                           <h5 class="field">Etudiant</h5>
-                         </div>
+                {if !empty($students)}
+                 {foreach $students as $student}
+                  <div class="col-md-3">
+                     <div class="member">
+                       <div class="details">
+                           <img class="img-thumbnail" alt="avatar" src="{$url_photos}/{$student->photo}" height="170px">
+                         </a>
+                         <a href="#"><h2 class="title">{$student->firstname}</h2></a>
                        </div>
                      </div>
-
-
-                     <div class="col-md-3">
-                        <div class="member">
-                          <div class="details">
-                            <a href="/Eric" target="_blank">
-                              <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
-                            </a>
-                            <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
-                            <h5 class="field">Etudiant</h5>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-md-3">
-                         <div class="member">
-                           <div class="details">
-                             <a href="/Eric" target="_blank">
-                               <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
-                             </a>
-                             <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
-                             <h5 class="field">Etudiant</h5>
-                           </div>
-                         </div>
-                       </div>
-
-
-                       <div class="col-md-3">
-                          <div class="member">
-                            <div class="details">
-                              <a href="/Eric" target="_blank">
-                                <img class="img-thumbnail" alt="avatar" src="{$url_photos}/will-smith.jpg" height="170px">
-                              </a>
-                              <a href="/Eric" target="_blank"><h2 class="title">Eric</h2></a>
-                              <h5 class="field">Etudiant</h5>
-                            </div>
-                          </div>
-                        </div>
+                   </div>
+                 {/foreach}
+                 {/if}
 
             </div>
           </div>
         </div>
       </section>
-
-
-
 
   </div><!-- /.row -->
 
