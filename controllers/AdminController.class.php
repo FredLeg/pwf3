@@ -17,6 +17,7 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/index', $vars);
 	}
 
+
 	public function post() {
 
 		$posts = Post::getList('SELECT * FROM posts ORDER BY title ASC');
@@ -31,6 +32,7 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
+
 	public function contact() {
 
 		$data = Contact::getList('SELECT * FROM contact ORDER BY lastname, firstname');
@@ -44,6 +46,7 @@ class AdminController extends BaseAdminController {
 
 		$this->render('admin/baseTable', $vars);
 	}
+
 
 	public function user() {
 
@@ -66,6 +69,7 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
+
 	public function school() {
 
 		$data = School::getList('SELECT * FROM school ORDER BY name ASC');
@@ -79,6 +83,7 @@ class AdminController extends BaseAdminController {
 
 		$this->render('admin/baseTable', $vars);
 	}
+
 
 	public function session() {
 
@@ -94,6 +99,7 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
+
 	public function student() {
 
 		$data = Student::getList('SELECT * FROM student ORDER BY lastname ASC');
@@ -107,6 +113,7 @@ class AdminController extends BaseAdminController {
 
 		$this->render('admin/baseTable', $vars);
 	}
+
 
 	public function contact_edit() {
 
@@ -131,9 +138,11 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/contact', $vars);
 	}
 
+
 	public function contact_delete() {
 		$this->render('admin/contact', array());
 	}
+
 
 	public function search() {
 

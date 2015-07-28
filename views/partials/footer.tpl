@@ -25,5 +25,21 @@
 
 	<script src="{$JS_ROOT}jquery.min.js"></script>
 	<script src="{$JS_ROOT}bootstrap.min.js"></script>
+  <script src="{$JS_ROOT}bootstrap-checkbox.js"></script>
+
+  <script>
+  $(document).ready(function() {
+
+    $('input[type="checkbox"].checkbox-control').checkbox({
+      buttonStyle: 'btn-default',
+      buttonStyleChecked: 'btn-info',
+      checkedClass: 'icon-check',
+      uncheckedClass: 'icon-check-empty'
+    });
+
+    $('[data-toggle="tooltip"]').tooltip()
+
+  });
+  </script>
 </body>
 </html>
