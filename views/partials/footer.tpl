@@ -7,20 +7,22 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <ul class="nav  nav-pills nav-stacked">
-                <li class="item-143">
-                  <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015</a></li>
-              </ul>
+                <p>
+                  <a href="#">{t}Back to top{/t}</a>
+                </p>
+                  <p>
+                    <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015
+                    </a>
+                  </p>
+
+
             </div>
           </div>
         </div>
       </section>
     </footer>
 
-      <!-- <p>{$website_title} &copy; 2015</p> -->
-      <p>
-        <a href="#">{t}Back to top{/t}</a>
-      </p>
+
     </footer>
 
 	<script src="{$JS_ROOT}jquery.min.js"></script>
@@ -30,11 +32,21 @@
   <script>
   $(document).ready(function() {
 
-    $('input[type="checkbox"].checkbox-control').checkbox({
+    var checkbox_options = {
       buttonStyle: 'btn-default',
-      buttonStyleChecked: 'btn-info',
+      buttonStyleChecked: 'btn-success',
       checkedClass: 'icon-check',
       uncheckedClass: 'icon-check-empty'
+    };
+
+    $('input[type="checkbox"].checkbox-control').each(function() {
+
+      var type = typeof($(this).data('checked')) !== 'undefined' ? $(this).data('checked') : 'default';
+
+      checkbox_options.buttonStyleChecked = 'btn-'+type;
+
+      $(this).checkbox(checkbox_options);
+
     });
 
     $('[data-toggle="tooltip"]').tooltip()

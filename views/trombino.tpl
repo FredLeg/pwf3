@@ -2,7 +2,7 @@
 
     <div class="blog-header">
       <h1 class="blog-title">{$title}</h1>
-      <p class="lead blog-description">{$description}</p>
+      <p class="lead blog-description" id="description">{$description}</p>
     </div>
 
 
@@ -19,18 +19,9 @@
                        <div class="details">
                            <img class="img-thumbnail" alt="avatar" src="{$url_trombino}{$student->getPathPhoto()}" height="170px">
                            <a href="#"><h2 class="title">{$student->firstname}</h2></a>
-                       </div>
-                       <div class="controls">
-
-
-                          <div data-toggle="tooltip" data-placement="top" title="Absence"><input type="checkbox" name="a" class="checkbox-control"/></div>
-                          <input type="checkbox" name="r1" class="checkbox-control"/>
-                          <input type="checkbox" name="r2" class="checkbox-control"/>
-                          <input type="checkbox" name="d1" class="checkbox-control"/>
-                          <input type="checkbox" name="d2" class="checkbox-control"/>
+                        </div>
                        </div>
                      </div>
-                    </div>
                  {/foreach}
                  {/if}
             </div>
@@ -38,25 +29,7 @@
         </div>
       </section>
 
-  </div><!-- /.row -->
-
-      <!--NAV PAGE-->
-
-      <!--<div class="row">
-
-         <div class="col-md-12">
-            <ul class="pager pagenav">
-              <li class="previous">
-                <a href="/previous" rel="prev"><span class="icon-chevron-left"></span>Précédent</a>
-              </li>
-
-              <li class="next">
-                <a href="/next" rel="next"><span class="icon-chevron-right"></span>Suivant</a>
-              </li>
-            </ul>
-          </div>
-      </div>-->
-      <!--END NAV PAGE-->
+  </div>
 
 
 

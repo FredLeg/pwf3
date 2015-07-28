@@ -11,7 +11,7 @@
 			</nav>
 
 			<nav class="nav navbar-nav navbar-right blog-nav">
-				<span class="glyphicon glyphicon-log-in " aria-hidden="true"> Se connecter</span>
+				<a href="views/logger.tpl"><span id="se-logger"class="glyphicon glyphicon-log-in " aria-hidden="true"> Se connecter</span></a>
 			</nav>
 		</div>
 	</div>
