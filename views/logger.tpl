@@ -1,9 +1,6 @@
 {include file="partials/header.tpl"}
 
-<div class="blog-header">
-	<h1 class="blog-title">{$title}</h1>
-	<p class="lead blog-description">{$description}</p>
-</div>
+<div class="blog-header"></div>
 
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
