@@ -1,6 +1,13 @@
 <?php
 abstract class BaseController extends Controller {
 
+	 public static $pages = array(
+		'home' => array('Home', '', User::USER_LEVEL_VISITOR),
+		'post/archives' => array('Archives', '', User::USER_LEVEL_VISITOR),
+		'search' => array('Search', '', User::USER_LEVEL_VISITOR),
+		'contact' => array('Contact', '', User::USER_LEVEL_VISITOR),
+	);
+
 	public function __construct() {
 
 		parent::__construct();
@@ -24,12 +31,7 @@ abstract class BaseController extends Controller {
 			'description' => ''
 		);
 
-		$vars['pages'] = array(
-			array('url' => 'home', 'name' => Lang::_('Home')),
-			array('url' => 'post/archives', 'name' => Lang::_('Archives')),
-			array('url' => 'search', 'name' => Lang::_('Search')),
-			array('url' => 'contact', 'name' => Lang::_('Contact'))
-		);
+		$vars['pages'] = self::$pages;
 
 		if (User::isLogged()) {
 			$vars['user'] = User::get($this->session->user_id);
@@ -47,6 +49,25 @@ abstract class BaseController extends Controller {
 		$vars['archives_dates'] = $archives_dates;
 
 		$this->response->addVars($vars);
+	}
+
+	public function isAllowedAccess($page, $level) {
+
+		if (empty($level)) {
+			return false;
+		}
+
+		if (!isset(static::$pages[$page])) {
+			return false;
+		}
+
+		$page_level = static::$pages[$page][2];
+
+		if ($level < $page_level) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

@@ -1,13 +1,18 @@
 <?php
 class User extends Model {
 
+	const USER_LEVEL_VISITOR = 1;
+	const USER_LEVEL_ADMIN = 2;
+
 	protected $id;
 	protected $school_id;
 	protected $group_id;
+	protected $level;
 	protected $name;
 	protected $titre;
 	protected $photo;
 	protected $email;
+	protected $password;
 	protected $phone;
 	protected $infos;
 
@@ -40,6 +45,9 @@ class User extends Model {
 	public function getEmail() {
 		return $this->email;
 	}
+	public function getPassword() {
+		return $this->password;
+	}
 	public function getPhone() {
 		return $this->phone;
 	}
@@ -67,6 +75,9 @@ class User extends Model {
 	}
 	public function setEmail($email) {
 		$this->email = $email;
+	}
+	public function setPassword($password) {
+		$this->password = $password;
 	}
 	public function setPhone($phone) {
 		$this->phone = $phone;
