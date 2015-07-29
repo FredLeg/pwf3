@@ -5,8 +5,8 @@ global $routes;
 $routes = array(
 	/* Front */
 	'/' => array(
-		'target' => 'home',
-		'action' => 'index'
+		'target' => DEFAULT_CONTROLLER_TARGET,
+		'action' => DEFAULT_CONTROLLER_ACTION
 	),
 	'post/([0-9]+)' => array(
 		'target' => 'post',
