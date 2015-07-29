@@ -18,7 +18,7 @@
                      <div class="presence">
                        <div class="details">
                            <img class="img-thumbnail" alt="avatar" src="{$url_trombino}{$student->getPathPhoto()}" height="170px">
-                           <a href="#"><h2 class="title">{$student->firstname}</h2></a>
+                           <a href="#"><h2 class="title">{$student->firstname}</h2><h2 class="title">{$student->lastname}</h2></a>
                        </div>
                         <div class="controls">
 
