@@ -6,7 +6,7 @@ class Student extends Model {
 	protected $session_id;
 	protected $firstname;
 	protected $lastname;
-	protected $sex;
+	protected $gender;
 	protected $photo;
 	protected $date_birth;
 	protected $num_pe;
@@ -27,19 +27,19 @@ class Student extends Model {
 	public function getLastname() {
 		return $this->lastname;
 	}
-	public function getSex() {
-		return $this->sex;
+	public function getGender() {
+		return $this->gender;
 	}
 	public function getPhoto() {
 		return $this->photo;
 	}
 	public function getPathPhoto() {
 		if (is_null($this->photo) || empty($this->photo)) {
-			return 'avatar-'.$this->getSex().'.png';
+			return 'avatar-'.$this->getGender().'.png';
 		}
     	$path_path = $this->getSessionId().'/'.$this->photo;
     	if (!file_exists(IMG_PATH.'trombino/'.$path_path)) {
-    		return 'avatar-'.$this->getSex().'.png';
+    		return 'avatar-'.$this->getGender().'.png';
     	}
     	return $path_path;
 	}
@@ -72,8 +72,8 @@ class Student extends Model {
 	public function setLastname($lastname) {
 		$this->lastname = $lastname;
 	}
-	public function setSex($sex) {
-		$this->sex = $sex;
+	public function setGender($gender) {
+		$this->gender = $gender;
 	}
 	public function setPhoto($photo) {
 		$this->photo = $photo;
