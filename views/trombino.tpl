@@ -2,7 +2,7 @@
 
     <div class="blog-header">
       <h1 class="blog-title">{$title}</h1>
-      <p class="lead blog-description">{$description}</p>
+      <p class="lead blog-description" id="description">{$description}</p>
     </div>
 
 
@@ -20,18 +20,9 @@
                        <div class="details">
                            <img class="img-thumbnail" alt="avatar" src="{$url_trombino}{$student->getPathPhoto()}" height="170px">
                            <a href="#"><h2 class="title">{$student->firstname}</h2></a>
-                       </div>
-                       <div class="controls">
-
-
-                          <div data-toggle="tooltip" data-placement="top" title="Absence"><input type="checkbox" name="a" class="checkbox-control"/></div>
-                          <input type="checkbox" name="r1" class="checkbox-control"/>
-                          <input type="checkbox" name="r2" class="checkbox-control"/>
-                          <input type="checkbox" name="d1" class="checkbox-control"/>
-                          <input type="checkbox" name="d2" class="checkbox-control"/>
+                        </div>
                        </div>
                      </div>
-                    </div>
                  {/foreach}
                  {/if}
             </div>
@@ -40,5 +31,20 @@
       </section>
 
   </div>
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> e68c18f3ebba415538690d38caf5f44ab19d8229
 
 {include file="partials/footer.tpl"}
