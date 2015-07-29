@@ -17,6 +17,8 @@
       </section>
   </footer>
 
+    {include file="partials/debug.tpl"}
+
 	<script src="{$JS_ROOT}jquery.min.js"></script>
 	<script src="{$JS_ROOT}bootstrap.min.js"></script>
   <script src="{$JS_ROOT}bootstrap-checkbox.js"></script>

@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar">111</span>
+                    <span class="icon-bar">222</span>
+                    <span class="icon-bar">333</span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Gestion feuilles de présence WF3</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -15,6 +15,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+
                         <li class="sidebar-search">
                             <form id="form-search" action="{$HTTP_ROOT}admin/search" method="GET">
                                 <div class="input-group custom-search-form">
@@ -29,11 +30,9 @@
                             <!-- /input-group -->
                         </li>
 
-
                         {foreach $pages as $page_url => $page_params}
                         <li><a href="{$HTTP_ROOT}{$page_url}"{if $page_url == $current_page} class="active"{/if}><i class="fa {$page_params[1]} fa-fw"></i> {$page_params[0]}</a></li>
                         {/foreach}
-
                         <!--
                         <li class="active">
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Level 1<span class="fa arrow"></span></a>
@@ -43,6 +42,7 @@
                             </ul>
                         </li>
                         -->
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

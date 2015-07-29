@@ -9,19 +9,6 @@ class Contact extends Model {
 	protected $newsletter;
 	protected $cgu;
 
-	public function getForm($id = '', $name = '', $action = '', $method = 'POST', $class = 'form-horizontal', $errors = array(), $isPost = false) {
-
-		$form = new Form($id, $name, $action, $method, $class, $isPost);
-		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->lastname, true, '', @$errors['lastname']);
-		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->firstname, true, '', @$errors['firstname']);
-		$form->addField('email', Lang::_('Email'), 'email', $this->email, true, '', @$errors['email']);
-		$form->addField('message', Lang::_('Message'), 'textarea', $this->message, true, '', @$errors['message']);
-		$form->addField('newsletter', Lang::_('Subscribe to the newsletter'), 'checkbox', $this->newsletter, false);
-		$form->addField('cgu', Lang::_('Accept the CGU'), 'checkbox', $this->cgu, true, '', @$errors['cgu']);
-
-		return $form->render();
-	}
-
 	/* Getters */
 	public function getId() {
 		return $this->id;
@@ -51,25 +38,25 @@ class Contact extends Model {
 	}
 	public function setLastname($lastname) {
 		if (empty($lastname)) {
-			throw new Exception(Lang::_('Vous devez renseigner votre nom'));
+			throw new Exception(Lang::_('You must fill your lastname'));
 		}
 		$this->lastname = $lastname;
 	}
 	public function setFirstname($firstname) {
 		if (empty($firstname)) {
-			throw new Exception(Lang::_('Vous devez renseigner votre prénom'));
+			throw new Exception(Lang::_('You must fill your firstname'));
 		}
 		$this->firstname = $firstname;
 	}
 	public function setEmail($email) {
 		if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			throw new Exception(Lang::_('Vous devez renseigner un email valide'));
+			throw new Exception(Lang::_('You must provide a valid email'));
 		}
 		$this->email = $email;
 	}
 	public function setMessage($message) {
 		if (empty($message)) {
-			throw new Exception(Lang::_('Vous devez renseigner votre message'));
+			throw new Exception(Lang::_('You must fill your message'));
 		}
 		$this->message = strip_tags($message);
 	}
@@ -78,9 +65,22 @@ class Contact extends Model {
 	}
 	public function setCgu($cgu) {
 		if (empty($cgu)) {
-			throw new Exception(Lang::_('Vous devez accepter les conditions d\'utilisations'));
+			throw new Exception(Lang::_('You have to accept the terms of service'));
 		}
 		$this->cgu = $cgu;
+	}
+
+	public function getForm($type, $action, $request, $isPost = false, $errors = array()) {
+
+		$form = new Form($id = 'form-contact', $name = 'form-contact', $action, 'POST', 'form-horizontal', $isPost);
+		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
+		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
+		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), true, '', @$errors['email']);
+		$form->addField('message', Lang::_('Message'), 'textarea', $this->_getfieldvalue('message', $type, $request), true, '', @$errors['message']);
+		$form->addField('newsletter', Lang::_('Subscribe to the newsletter'), 'checkbox', $this->_getfieldvalue('newsletter', $type, $request), false);
+		$form->addField('cgu', Lang::_('Accept the terms of service'), 'checkbox', $this->_getfieldvalue('cgu', $type, $request), true, '', @$errors['cgu']);
+
+		return $form->render();
 	}
 
 	public function insert() {
@@ -97,5 +97,35 @@ class Contact extends Model {
 				'message' => $this->message
 			)
 		);
+	}
+
+	public function update() {
+
+		if (empty($this->id)) {
+			throw new Exception('Update error - Undefined contact id');
+		}
+
+		return Db::update(
+			'UPDATE contact SET lastname = :lastname, firstname = :firstname, email = :email, newsletter = :newsletter, cgu = :cgu, message = :message, date = NOW()
+		 	 WHERE id = :id',
+			array(
+				'lastname' => $this->lastname,
+				'firstname' => $this->firstname,
+				'email' => $this->email,
+				'newsletter' => (int) $this->newsletter,
+				'cgu' => (int) $this->cgu,
+				'message' => $this->message,
+				'id' => (int) $this->id
+			)
+		);
+	}
+
+	public function delete() {
+
+		if (empty($this->id)) {
+			throw new Exception('Delete error - Undefined contact id');
+		}
+
+		return Db::delete('DELETE FROM contact WHERE id = :id', array('id' => $this->id));
 	}
 }

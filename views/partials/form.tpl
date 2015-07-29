@@ -8,7 +8,10 @@
 
 				<div class="form-group{if !empty($isSubmit)}{if !empty($fields[key]->error)} has-error{else} has-success{/if}{/if}">
 
-					{if $fields[key]->type == 'text' || $fields[key]->type == 'email' || $fields[key]->type == 'password'}
+					{if $fields[key]->type == 'text' ||
+						$fields[key]->type == 'email' ||
+						$fields[key]->type == 'date' ||
+						$fields[key]->type == 'password'}
 					<label for="{$fields[key]->name}" class="col-sm-2 control-label">{$fields[key]->label}</label>
 					<div class="col-sm-10">
 						<input type="{$fields[key]->type}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}" id="{$fields[key]->name}" name="{$fields[key]->name}" {if isset($fields[key]->maxlength) && $fields[key]->maxlength > 0} maxlength="{$fields[key]->maxlength}"{/if} placeholder="{$fields[key]->label}" value="{$fields[key]->value}">
@@ -51,7 +54,7 @@
 				    </div>
 					{/if}
 
-					{if !empty($isSubmit) && !empty($fields[key]->error)}
+					{if !empty($isSubmit) && !empty($fields[key]->error) && $fields[key]->error !== true}
 					<label class="col-sm-2"></label>
 					<div class="col-sm-10 error" role="alert">
 						<span class="glyphicon glyphicon-warning-sign"></span> {$fields[key]->error}
@@ -64,7 +67,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Envoyer</button>
+					<button type="submit" class="btn btn-default">{t}Send{/t}</button>
 				</div>
 			</div>
 

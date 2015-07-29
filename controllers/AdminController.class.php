@@ -12,39 +12,7 @@ class AdminController extends BaseAdminController {
 
 	public function index() {
 
-		$vars = array();
-
-		$this->render('admin/index', $vars);
-	}
-
-
-	public function post() {
-
-		$posts = Post::getList('SELECT * FROM posts ORDER BY title ASC');
-
-		$table = new Table('data-table', 'post', $posts, array('id', 'title', 'author', 'date'), ROOT_HTTP.'admin/post/edit', ROOT_HTTP.'admin/post/delete');
-
-		$vars = array(
-			'name' => 'Posts',
-			'table' => $table->render()
-		);
-
-		$this->render('admin/baseTable', $vars);
-	}
-
-
-	public function contact() {
-
-		$data = Contact::getList('SELECT * FROM contact ORDER BY lastname, firstname');
-
-		$table = new Table('data-table', 'contact', $data, array('id', 'firstname', 'lastname', 'message'), ROOT_HTTP.'admin/contact/edit', ROOT_HTTP.'admin/contact/delete');
-
-		$vars = array(
-			'name' => 'Contacts',
-			'table' => $table->render()
-		);
-
-		$this->render('admin/baseTable', $vars);
+		$this->render('admin/index', []);
 	}
 
 
@@ -59,7 +27,7 @@ class AdminController extends BaseAdminController {
 
 		$data = User::getList('SELECT * FROM user ORDER BY name ASC');
 
-		$table = new Table('data-table', 'user', $data, array('id', 'school_id', 'group_id', 'name', 'titre', 'photo', 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
+		$table = new Table('data-table', 'user', $data, array(/*'id', 'school_id', 'group_id',*/ 'name', 'titre'/*, 'photo'*/, 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
 
 		$vars = array(
 			'name' => 'Utilisateurs',
@@ -84,7 +52,6 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
-
 	public function session() {
 
 		$data = School_Session::getList('SELECT * FROM session ORDER BY date_start ASC');
@@ -104,7 +71,7 @@ class AdminController extends BaseAdminController {
 
 		$data = Student::getList('SELECT * FROM student ORDER BY lastname ASC');
 
-		$table = new Table('data-table', 'student', $data, array('id', 'session_id', 'firstname', 'lastname', 'sex', 'photo', 'date_birth', 'num_pe', 'from_city', 'email', 'phone'), ROOT_HTTP.'admin/student/edit', ROOT_HTTP.'admin/student/delete');
+		$table = new Table('data-table', 'student', $data, array('id', 'session_id', 'firstname', 'lastname', 'gender', 'photo', 'date_birth', 'num_pe', 'from_city', 'email', 'phone'), ROOT_HTTP.'admin/student/edit', ROOT_HTTP.'admin/student/delete');
 
 		$vars = array(
 			'name' => 'Étudiants',
@@ -138,11 +105,21 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/contact', $vars);
 	}
 
-
-	public function contact_delete() {
-		$this->render('admin/contact', array());
+	public function post() {
+		return $this->base_list('post', array('id', 'title', 'author', 'date'));
 	}
 
+	public function post_action() {
+		return $this->base_action('post');
+	}
+
+	public function contact() {
+		return $this->base_list('contact', array('id', 'firstname', 'lastname', 'message'), 'lastname, firstname');
+	}
+
+	public function contact_action() {
+		return $this->base_action('contact');
+	}
 
 	public function search() {
 
