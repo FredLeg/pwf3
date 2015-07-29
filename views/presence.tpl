@@ -15,7 +15,7 @@
                 {if !empty($students)}
                   {foreach $students as $student}
                     <div class="col-md-3">
-                     <div class="member">
+                     <div class="presence">
                        <div class="details">
                            <img class="img-thumbnail" alt="avatar" src="{$url_trombino}{$student->getPathPhoto()}" height="170px">
                            <a href="#"><h2 class="title">{$student->firstname}</h2></a>
@@ -38,7 +38,7 @@
                                   <span class="control">D1</span></div>
 
                               <div class="col-md-2" data-toggle="tooltip" data-placement="bottom" title="Grand Départ">
-                                <input type="checkbox" name="d2" class="checkbox-control" data-checked="warning"/>
+                                <input type="checkbox" name="d2" class="checkbox-control" data-checked="danger"/>
                                   <span class="control">D2</span></div>
 
 
@@ -77,17 +77,5 @@
           </div>
       </div>-->
       <!--END NAV PAGE-->
-
-
-
-
-
-
-
-
-
-
-
-
 
 {include file="partials/footer.tpl"}

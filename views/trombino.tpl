@@ -31,20 +31,5 @@
       </section>
 
   </div>
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> e68c18f3ebba415538690d38caf5f44ab19d8229
 
 {include file="partials/footer.tpl"}

@@ -1,29 +1,21 @@
-	</div><!-- /.container -->
 
 	<footer class="blog-footer">
-
-    <footer class="footer">
       <section class="copyright">
         <div class="container">
-          <div class="row">
+          <div class="row" id="logo-footer">
             <div class="col-md-12">
                 <p>
                   <a href="#">{t}Back to top{/t}</a>
                 </p>
-                  <p>
-                    <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015
-                    </a>
-                  </p>
-
-
+                <p>
+                  <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015
+                  </a>
+                </p>
             </div>
           </div>
         </div>
       </section>
-    </footer>
-
-
-    </footer>
+  </footer>
 
 	<script src="{$JS_ROOT}jquery.min.js"></script>
 	<script src="{$JS_ROOT}bootstrap.min.js"></script>
