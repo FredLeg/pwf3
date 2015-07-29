@@ -58,7 +58,6 @@ class Student extends Model {
 	public function getPhone() {
 		return $this->phone;
 	}
-
 	/* Setters */
 	public function setId($id) {
 		$this->id = $id;
@@ -93,4 +92,5 @@ class Student extends Model {
 	public function setPhone($phone) {
 		$this->phone = $phone;
 	}
+
 }

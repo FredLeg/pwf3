@@ -1,52 +1,24 @@
 /*
-* Globals
-*/
-
-body {
-
-}
-
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  color: #333;
-}
-
-
-/*
 * Override Bootstrap's default container.
-*/
+
 
 @media (min-width: 1200px) {
   .container {
     width: 970px;
   }
 }
-
-
-/*
-* Masthead for nav
 */
 
-.blog-masthead {
-  background-color: #428bca;
-  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-  box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-}
 
-/* Nav links */
+
+/* Nav links
 .blog-nav-item {
   position: relative;
   display: inline-block;
-  padding: 10px;
+  padding: 0px;
   font-weight: 500;
   color: #cdddeb;
+
 }
 .blog-nav-item:hover,
 .blog-nav-item:focus {
@@ -54,7 +26,9 @@ h6, .h6 {
   text-decoration: none;
 }
 
-/* Active state gets a caret at the bottom */
+ */
+
+/* Active state gets a caret at the bottom
 .blog-nav .active {
   color: #fff;
 }
@@ -73,9 +47,10 @@ h6, .h6 {
 }
 
 
+
 /*
 * Blog name and description
-*/
+
 
 .blog-header {
   padding-top: 20px;
@@ -92,10 +67,11 @@ h6, .h6 {
   color: #999;
 }
 
+*/
 
 /*
 * Main column and sidebar layout
-*/
+
 .blog-content {
   margin-bottom: 0px;
 }
@@ -105,7 +81,9 @@ h6, .h6 {
   line-height: 1.5;
 }
 
-/* Sidebar modules for boxing content */
+*/
+
+/* Sidebar modules for boxing content
 .sidebar-module {
   padding: 15px;
   margin: 0 -15px 15px;
@@ -121,8 +99,9 @@ h6, .h6 {
   margin-bottom: 0;
 }
 
+*/
 
-/* Pagination */
+/* Pagination
 .pager {
   margin-bottom: 60px;
   text-align: left;
@@ -134,10 +113,12 @@ h6, .h6 {
   border-radius: 30px;
 }
 
+*/
+
 
 /*
 * Blog posts
-*/
+
 
 .blog-post {
   margin-bottom: 60px;
@@ -151,31 +132,15 @@ h6, .h6 {
   color: #999;
 }
 
+*/
+
 /*
 * Form errors
-*/
+
 
 .error {
   color: #CC0000;
   font-style: italic;
 }
 
-
-/*
-* Footer
 */
-
-/*
-* Footer
-*/
-
-.blog-footer {
-	padding: 10px 0;
-	color: #999;
-	text-align: center;
-	background-color: #f9f9f9;
-	border-top: 1px solid #e5e5e5;
-}
-.blog-footer p:last-child {
-	margin-bottom: 0;
-}

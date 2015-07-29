@@ -13,9 +13,8 @@
 			<nav class="nav navbar-nav navbar-right blog-nav">
 				<a href="{$HTTP_ROOT}logger">
 					<span class="se-logger" id="se-logger"> Se connecter</span>
-					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i></a>
+					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
+				</a>
 			</nav>
 		</div>
 	</div>
-
-	<div class="container blog-content">

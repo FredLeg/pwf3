@@ -1,4 +1,6 @@
 
+  </div><!-- .container.blog-content -->
+
 	<footer class="blog-footer">
       <section class="copyright">
         <div class="container">
@@ -17,13 +19,17 @@
       </section>
   </footer>
 
-    {include file="partials/debug.tpl"}
+  {include file="partials/debug.tpl"}
 
 	<script src="{$JS_ROOT}jquery.min.js"></script>
 	<script src="{$JS_ROOT}bootstrap.min.js"></script>
   <script src="{$JS_ROOT}bootstrap-checkbox.js"></script>
 
   <script>
+
+  var HTTP_ROOT = '{$HTTP_ROOT}';
+
+  {literal}
   $(document).ready(function() {
 
     var checkbox_options = {
@@ -41,11 +47,33 @@
 
       $(this).checkbox(checkbox_options);
 
+      $(this).unbind('click').bind('click', function() {
+
+        var student_id = $(this).closest('.presence').data('id');
+        var action = $(this).attr('name');
+        var date = parseInt($.now()) / 1000;
+        var value = $(this).prop('checked') ? 1 : 0;
+
+        $.ajax({
+          method: "POST",
+          url: HTTP_ROOT+"presence/update",
+          data: {student_id: student_id, action: action, value: value, date: date}
+        })
+        .done(function(result) {
+          console.log(result);
+        });
+
+      });
+
     });
 
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip({
+      container: 'body'
+    })
 
   });
+  {/literal}
   </script>
+
 </body>
 </html>
