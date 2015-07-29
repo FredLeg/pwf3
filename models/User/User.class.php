@@ -8,7 +8,7 @@ class User extends Model {
 	protected $school_id;
 	protected $group_id;
 	protected $level;
-	protected $name;
+	protected $firstname;
 	protected $titre;
 	protected $photo;
 	protected $email;
@@ -16,7 +16,7 @@ class User extends Model {
 	protected $phone;
 	protected $infos;
 
-	private $session;
+	public $session; // private
 
 	public function __construct($data = array()) {
 		parent::__construct($data);
@@ -34,8 +34,8 @@ class User extends Model {
 	public function getGroupId() {
 		return $this->group_id;
 	}
-	public function getname() {
-		return $this->name;
+	public function getFirstname() {
+		return $this->firstname;
 	}
 	public function getTitre() {
 		return $this->titre;
@@ -67,8 +67,11 @@ class User extends Model {
 	public function setGroupId($group_id) {
 		$this->group_id = $group_id;
 	}
-	public function setName($name) {
-		$this->name = $name;
+	public function setFirstname($firstname) {
+		if (empty($firstname)) {
+			throw new Exception(Lang::_('You must fill your name'));
+		}
+		$this->firstname = $firstname;
 	}
 	public function setTitre($titre) {
 		$this->titre = $titre;
@@ -79,18 +82,6 @@ class User extends Model {
 	public function setPhone($phone) {
 		$this->phone = $phone;
 	}
-	public function setFirstname($firstname) {
-		if (empty($firstname)) {
-			throw new Exception(Lang::_('You must fill your firstname'));
-		}
-		$this->firstname = $firstname;
-	}
-	public function setLastname($lastname) {
-		if (empty($lastname)) {
-			throw new Exception(Lang::_('You must fill your lastname'));
-		}
-		$this->lastname = $lastname;
-	}
 	public function setEmail($email) {
 		if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			throw new Exception(Lang::_('You must provide a valid email'));
@@ -99,7 +90,7 @@ class User extends Model {
 	}
 	public function setPassword($password) {
 		if (strlen($password) < 6) {
-			throw new Exception(Lang::_('You must profide a password with at least 6 chars'));
+			throw new Exception(Lang::_('You must provide a password with at least 6 chars'));
 		}
 		$this->password = $password;
 	}
@@ -199,7 +190,7 @@ class User extends Model {
 
 		$form = new Form('', 'form-register', $action, 'POST', 'form-horizontal', $errors, $isPost);
 		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
-		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
+		$//form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
 		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), true, '', @$errors['email']);
 		$form->addField('confirm_email', Lang::_('Confirm email'), 'email', $this->_getfieldvalue('confirm_email', $type, $request), true, '', @$errors['confirm_email']);
 		$form->addField('password', Lang::_('Password'), 'password', '', true, '', @$errors['password']);
@@ -261,7 +252,7 @@ class User extends Model {
 			 array(
 				'fb_id' => $this->fb_id,
 				'firstname' => $this->firstname,
-				'lastname' => $this->lastname,
+			//	'lastname' => $this->lastname,
 				'email' => $this->email,
 				'password' => $this->password
 			 )
