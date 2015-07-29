@@ -24,6 +24,7 @@ class User extends Model {
 		$this->session = Session::getInstance();
 	}
 
+	/* Getters */
 	public function getId() {
 		return $this->id;
 	}
@@ -55,12 +56,14 @@ class User extends Model {
 		return $this->infos;
 	}
 
+	/* Setters */
 	public function setId($id) {
 		$this->id = $id;
 	}
 	public function setSchoolId($school_id) {
 		$this->school_id = $school_id;
 	}
+
 	public function setGroupId($group_id) {
 		$this->group_id = $group_id;
 	}
@@ -73,19 +76,50 @@ class User extends Model {
 	public function setPhoto($photo) {
 		$this->photo = $photo;
 	}
+	public function setPhone($phone) {
+		$this->phone = $phone;
+	}
+	public function setFirstname($firstname) {
+		if (empty($firstname)) {
+			throw new Exception(Lang::_('You must fill your firstname'));
+		}
+		$this->firstname = $firstname;
+	}
+	public function setLastname($lastname) {
+		if (empty($lastname)) {
+			throw new Exception(Lang::_('You must fill your lastname'));
+		}
+		$this->lastname = $lastname;
+	}
 	public function setEmail($email) {
+		if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			throw new Exception(Lang::_('You must provide a valid email'));
+		}
 		$this->email = $email;
 	}
 	public function setPassword($password) {
+		if (strlen($password) < 6) {
+			throw new Exception(Lang::_('You must profide a password with at least 6 chars'));
+		}
 		$this->password = $password;
 	}
-	public function setPhone($phone) {
-		$this->phone = $phone;
+	public function setStatus($status) {
+		$this->status = $status;
+	}
+	public function setNewsletter($newsletter) {
+		$this->newsletter = $newsletter;
+	}
+	public function setCgu($cgu) {
+		if (empty($cgu)) {
+			throw new Exception(Lang::_('You have to accept the terms of service'));
+		}
+		$this->cgu = $cgu;
 	}
 	public function setInfos($infos) {
 		$this->infos = $infos;
 	}
 
+	/* Misc */
 	public static function isLogged() {
 		return Session::getInstance()->user_id;
 	}
@@ -101,11 +135,7 @@ class User extends Model {
 			$user = self::get($user_id);
 
 			if (!empty($user)) {
-
-				$this->session->user_id = $user->id;
-				$this->session->firstname = $user->firstname;
-
-				return true;
+				return $user->login();
 			}
 		}
 
@@ -129,10 +159,7 @@ class User extends Model {
 					Authent::setRememberMe($user->id);
 				}
 
-				$this->session->user_id = $user->id;
-				$this->session->firstname = $user->firstname;
-
-				return true;
+				return $user->login();
 			}
 		}
 		return false;
@@ -149,15 +176,96 @@ class User extends Model {
 		return false;
 	}
 
+	public function getLoginForm($type, $action, $request, $isPost = false, $errors = array()) {
+
+		$form = new Form('', 'form-login', $action, 'POST', 'form-horizontal', $errors, $isPost);
+		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), true, '', !empty($errors['authent']) ? true : false);
+		$form->addField('password', Lang::_('Password'), 'password', '', true, '', !empty($errors['authent']) ? true : false);
+		$form->addField('remember_me', Lang::_('Remember me'), 'checkbox', $this->_getfieldvalue('remember_me', $type, $request), false, '');
+
+		return $form;
+	}
+
+	public function login() {
+		if (!$this->session->isActive()) {
+			return false;
+		}
+		$this->session->user_id = $this->id;
+		$this->session->firstname = $this->firstname;
+		return true;
+	}
+
+	public function getRegisterForm($type, $action, $request, $isPost = false, $errors = array()) {
+
+		$form = new Form('', 'form-register', $action, 'POST', 'form-horizontal', $errors, $isPost);
+		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
+		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
+		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), true, '', @$errors['email']);
+		$form->addField('confirm_email', Lang::_('Confirm email'), 'email', $this->_getfieldvalue('confirm_email', $type, $request), true, '', @$errors['confirm_email']);
+		$form->addField('password', Lang::_('Password'), 'password', '', true, '', @$errors['password']);
+		$form->addField('confirm_password', Lang::_('Confirm password'), 'password', '', true, '', @$errors['confirm_password']);
+		$form->addField('newsletter', Lang::_('Subscribe to the newsletter'), 'checkbox', $this->_getfieldvalue('newsletter', $type, $request), false, '');
+		$form->addField('cgu', Lang::_('Accept the terms of service'), 'checkbox', $this->_getfieldvalue('cgu', $type, $request), true, '', @$errors['cgu']);
+
+		return $form;
+	}
+
 	public function register() {
-		return Db::insert('INSERT INTO user (lastname, firstname, email, password, newsletter, cgu, register_date) VALUES (:lastname, :firstname, :email, :password, :newsletter, :cgu, NOW())', array(
-					'lastname' => $this->lastname,
-					'firstname' => $this->firstname,
-					'email' => $this->email,
-					'password' => $this->password,
-					'newsletter' => $this->newsletter,
-					'cgu' => $this->cgu
-				));
+		return Db::insert(
+		   'INSERT INTO user (lastname, firstname, email, password, newsletter, cgu, register_date)
+			VALUES (:lastname, :firstname, :email, :password, :newsletter, :cgu, NOW())',
+			array(
+				'lastname' => $this->lastname,
+				'firstname' => $this->firstname,
+				'email' => $this->email,
+				'password' => $this->password,
+				'newsletter' => $this->newsletter,
+				'cgu' => $this->cgu
+			)
+		);
+	}
+
+	public function getFacebookUser($register_url) {
+
+		$fb_user = API_Facebook::getUser($register_url);
+
+		if (empty($fb_user) || !is_object($fb_user)) {
+			return false;
+		}
+
+		foreach($this->getFields() as $key => $value) {
+			if (property_exists($fb_user, $key)) {
+				$this->$key = $fb_user->$key;
+			}
+		}
+
+		// @FIXME
+		$this->password = password_hash($this->fb_id.'-'.$this->email, PASSWORD_BCRYPT);
+
+		$fb_user = Db::selectOne('SELECT * FROM user WHERE fb_id = :fb_id', array('fb_id' => $this->fb_id));
+		if (!empty($fb_user)) {
+			$user = new User($fb_user);
+			return $user->login();
+		}
+
+		$this->id = $this->facebookRegister();
+		if (!empty($this->id)) {
+			return $this->login();
+		}
+	}
+
+	public function facebookRegister() {
+		return Db::insert(
+			'INSERT INTO user SET firstname = :firstname, lastname = :lastname, email = :email, password = :password, fb_id = :fb_id, cgu = 1, register_date = NOW()
+			 ON DUPLICATE KEY UPDATE firstname = :firstname, lastname = :lastname, email = :email, password = :password, fb_id = :fb_id, cgu = 1',
+			 array(
+				'fb_id' => $this->fb_id,
+				'firstname' => $this->firstname,
+				'lastname' => $this->lastname,
+				'email' => $this->email,
+				'password' => $this->password
+			 )
+		);
 	}
 
 

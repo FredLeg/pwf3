@@ -52,7 +52,6 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
-
 	public function session() {
 
 		$data = School_Session::getList('SELECT * FROM session ORDER BY date_start ASC');
@@ -106,11 +105,21 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/contact', $vars);
 	}
 
-
-	public function contact_delete() {
-		$this->render('admin/contact', array());
+	public function post() {
+		return $this->base_list('post', array('id', 'title', 'author', 'date'));
 	}
 
+	public function post_action() {
+		return $this->base_action('post');
+	}
+
+	public function contact() {
+		return $this->base_list('contact', array('id', 'firstname', 'lastname', 'message'), 'lastname, firstname');
+	}
+
+	public function contact_action() {
+		return $this->base_action('contact');
+	}
 
 	public function search() {
 

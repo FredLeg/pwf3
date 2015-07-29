@@ -1,4 +1,4 @@
- {include file="admin/partials/header.tpl"}
+{include file="admin/partials/header.tpl"}
 
                 <div class="row">
                     <div class="col-lg-12">
