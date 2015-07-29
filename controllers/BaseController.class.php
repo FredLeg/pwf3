@@ -1,7 +1,7 @@
 <?php
 abstract class BaseController extends Controller {
 
-	 public static $pages = array(
+	public static $pages = array(
 		'home' => array('Home', '', User::USER_LEVEL_VISITOR),
 		'post/archives' => array('Archives', '', User::USER_LEVEL_VISITOR),
 		'search' => array('Search', '', User::USER_LEVEL_VISITOR),
