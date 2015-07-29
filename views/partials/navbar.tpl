@@ -11,9 +11,10 @@
 			</nav>
 
 			<nav class="nav navbar-nav navbar-right blog-nav">
-				<a href="views/logger.tpl"><span id="se-logger"class="glyphicon glyphicon-log-in " aria-hidden="true"> Se connecter</span></a>
+				<a href="{$HTTP_ROOT}logger">
+					<span class="se-logger" id="se-logger"> Se connecter</span>
+					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
+				</a>
 			</nav>
 		</div>
 	</div>
-
-	<div class="container blog-content">
