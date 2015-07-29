@@ -53,7 +53,7 @@ abstract class BaseController extends Controller {
 
 	public function isAllowedAccess($page, $level) {
 
-		if (empty($level)) {
+		if (empty($level) || $level===0) {
 			return false;
 		}
 

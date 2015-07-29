@@ -2,6 +2,7 @@
 
 class UserController extends BaseController {
 
+
 	public function login() {
 
 		$user = new User();
@@ -55,6 +56,7 @@ class UserController extends BaseController {
 
 		return $this->render('authent', $vars);
 	}
+
 
 	public function register() {
 
@@ -137,6 +139,7 @@ class UserController extends BaseController {
 
 		return $this->render('authent', $vars);
 	}
+
 
 	public function logout() {
 

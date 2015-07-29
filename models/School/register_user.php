@@ -1,7 +1,10 @@
 <?php
 require('../../config/core.conf.php');
 
+$session = Session::getInstance(SESSION_DEFAULT_NAME);
+
 $user = User::getById(7);
+
 
 echo '<pre>';
 echo print_r($user);
@@ -9,8 +12,10 @@ echo '</pre>';
 
 echo 'id: '.$user->id .'<br>';
 echo 'nom: '.$user->firstname .'<br>';
-echo 'isLogged: '.(int) $user->isLogged() .'<br>';
+echo 'isLogged: '.(int) User::isLogged() .'<br>';
 echo 'session->isActive: '.(int) $user->session->isActive() .'<br>';
+
+echo 'TEST >> '.var_dump(User::isLogged());
 
 /*
 $pwd = password_hash('123456', PASSWORD_BCRYPT);

@@ -7,7 +7,9 @@ abstract class BaseAdminController extends BaseController {
         'admin/school/' => array('Ecoles', 'fa-file-text', User::USER_LEVEL_ADMIN),
         'admin/session/' => array('Sessions', 'fa-file-text', User::USER_LEVEL_ADMIN),
         'admin/student/' => array('Étudiants', 'fa-file-text', User::USER_LEVEL_ADMIN),
+        'admin/base_list/' => array('base_list', 'fa-file-text', User::USER_LEVEL_ADMIN),
 	);
+
 
 	public function __construct() {
 
@@ -23,12 +25,19 @@ abstract class BaseAdminController extends BaseController {
 			$this->response->redirect(ROOT_HTTP.'login');
 		}
 
-		if (!$this->isAllowedAccess($this->route, User::USER_LEVEL_VISITOR)) {
+		$user = User::get($this->session->user_id);
+
+		//echo 'id: '.$user->id.', level: '.$user->level;
+
+		if (!$this->isAllowedAccess($this->route, $user->level)) {
+
+			//throw new Exception('Not allowed access');
 			exit('Not allowed access');
 		}
 
 		$this->response->addVars($vars);
 	}
+
 
 	protected function base_list($entity_name, $cols, $order = 'id') {
 
@@ -53,6 +62,7 @@ abstract class BaseAdminController extends BaseController {
 
 		$this->render('admin/'.$entity_name, $vars);
 	}
+
 
 	protected function base_action($entity_name) {
 
