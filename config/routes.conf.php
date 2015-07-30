@@ -49,7 +49,12 @@ $routes = array(
 		'action' => 'post_action'
 	),
 
-	/* Logger */
+	'admin/student/([a-zA-Z-_]+)/?([0-9]*)' => array(
+		'target' => 'admin',
+		'action' => 'student_action'
+	),
+
+	/* Logger
 	'login' => array(
 		'target' => 'logger',
 		'action' => 'login'
@@ -57,7 +62,7 @@ $routes = array(
 	'logout' => array(
 		'target' => 'logger',
 		'action' => 'logout'
-	),
+	),*/
 
 	'presence/([0-9-]*)' => array(
 		'target' => 'presence',

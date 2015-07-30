@@ -19,12 +19,14 @@ class User extends Model {
 	public $session; // private
 
 	public function __construct($data = array()) {
+
 		parent::__construct($data);
 
 		$this->session = Session::getInstance();
 	}
 
-	/* Getters */
+
+	/* Getters ------------------------------------------------------------- */
 	public function getId() {
 		return $this->id;
 	}
@@ -33,6 +35,9 @@ class User extends Model {
 	}
 	public function getGroupId() {
 		return $this->group_id;
+	}
+	public function getLevel() {
+		return $this->level;
 	}
 	public function getFirstname() {
 		return $this->firstname;
@@ -56,16 +61,19 @@ class User extends Model {
 		return $this->infos;
 	}
 
-	/* Setters */
+
+	/* Setters ------------------------------------------------------------- */
 	public function setId($id) {
 		$this->id = $id;
 	}
 	public function setSchoolId($school_id) {
 		$this->school_id = $school_id;
 	}
-
 	public function setGroupId($group_id) {
 		$this->group_id = $group_id;
+	}
+	public function setLevel($level) {
+		$this->level = $level;
 	}
 	public function setFirstname($firstname) {
 		if (empty($firstname)) {
@@ -110,10 +118,14 @@ class User extends Model {
 		$this->infos = $infos;
 	}
 
-	/* Misc */
+
+	/* Misc  ------------------------------------------------------------- */
+
 	public static function isLogged() {
-		return Session::getInstance()->user_id;
+		$user_id = Session::getInstance()->user_id;
+		return !empty($user_id);
 	}
+
 
 	public function checkRememberMe() {
 
@@ -133,10 +145,10 @@ class User extends Model {
 		return false;
 	}
 
+
 	public function checkLogin($remember_me = false) {
 
 		$result = Db::selectOne('SELECT * FROM user WHERE email = :email', array('email' => $this->email));
-
 
 		if (!empty($result)) {
 
@@ -156,6 +168,7 @@ class User extends Model {
 		return false;
 	}
 
+
 	public function checkAlreadyExists() {
 		if (empty($this->email)) {
 			return false;
@@ -167,6 +180,7 @@ class User extends Model {
 		return false;
 	}
 
+
 	public function getLoginForm($type, $action, $request, $isPost = false, $errors = array()) {
 
 		$form = new Form('', 'form-login', $action, 'POST', 'form-horizontal', $errors, $isPost);
@@ -177,20 +191,25 @@ class User extends Model {
 		return $form;
 	}
 
+
 	public function login() {
+
 		if (!$this->session->isActive()) {
 			return false;
 		}
+
 		$this->session->user_id = $this->id;
 		$this->session->firstname = $this->firstname;
+
 		return true;
 	}
+
 
 	public function getRegisterForm($type, $action, $request, $isPost = false, $errors = array()) {
 
 		$form = new Form('', 'form-register', $action, 'POST', 'form-horizontal', $errors, $isPost);
 		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
-		$//form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
+		//$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
 		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), true, '', @$errors['email']);
 		$form->addField('confirm_email', Lang::_('Confirm email'), 'email', $this->_getfieldvalue('confirm_email', $type, $request), true, '', @$errors['confirm_email']);
 		$form->addField('password', Lang::_('Password'), 'password', '', true, '', @$errors['password']);
@@ -201,12 +220,13 @@ class User extends Model {
 		return $form;
 	}
 
+
 	public function register() {
 		return Db::insert(
-		   'INSERT INTO user (lastname, firstname, email, password, newsletter, cgu, register_date)
-			VALUES (:lastname, :firstname, :email, :password, :newsletter, :cgu, NOW())',
+		   'INSERT INTO user (firstname, email, password, newsletter, cgu, register_date)
+			VALUES (:firstname, :email, :password, :newsletter, :cgu, NOW())',
 			array(
-				'lastname' => $this->lastname,
+				//'lastname' => $this->lastname,
 				'firstname' => $this->firstname,
 				'email' => $this->email,
 				'password' => $this->password,
@@ -215,6 +235,7 @@ class User extends Model {
 			)
 		);
 	}
+
 
 	public function getFacebookUser($register_url) {
 
@@ -244,6 +265,7 @@ class User extends Model {
 			return $this->login();
 		}
 	}
+
 
 	public function facebookRegister() {
 		return Db::insert(

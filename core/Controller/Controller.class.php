@@ -64,7 +64,7 @@ abstract class Controller {
 			$this->get = Utils::stripslashes($this->get);
 		}
 
-		$this->session = !SESSION_DISABLED ? Session::getInstance(SESSION_DEFAULT_NAME) : null;;
+		$this->session = !SESSION_DISABLED ? Session::getInstance(SESSION_DEFAULT_NAME) : null;
 	}
 
 	public function getParam($param, $default = null) {

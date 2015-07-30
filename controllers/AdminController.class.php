@@ -25,9 +25,9 @@ class AdminController extends BaseAdminController {
 		//$action = $params[0]
 		//var_export($params);
 
-		$data = User::getList('SELECT * FROM user ORDER BY name ASC');
+		$data = User::getList('SELECT * FROM user ORDER BY firstname ASC');
 
-		$table = new Table('data-table', 'user', $data, array(/*'id', 'school_id', 'group_id',*/ 'name', 'titre'/*, 'photo'*/, 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
+		$table = new Table('data-table', 'user', $data, array(/*'id', 'school_id', 'group_id',*/ 'firstname', 'titre'/*, 'photo'*/, 'email', 'phone', 'infos'), ROOT_HTTP.'admin/user/edit', ROOT_HTTP.'admin/user/delete');
 
 		$vars = array(
 			'name' => 'Utilisateurs',
@@ -52,9 +52,10 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
+
 	public function session() {
 
-		$data = School_Session::getList('SELECT * FROM session ORDER BY date_start ASC');
+		$data = Promotion::getList('SELECT * FROM session ORDER BY date_start ASC');
 
 		$table = new Table('data-table', 'school', $data, array('id', 'school_id', 'date_start', 'date_end'), ROOT_HTTP.'admin/session/edit', ROOT_HTTP.'admin/session/delete');
 
@@ -66,7 +67,7 @@ class AdminController extends BaseAdminController {
 		$this->render('admin/baseTable', $vars);
 	}
 
-
+/*
 	public function student() {
 
 		$data = Student::getList('SELECT * FROM student ORDER BY lastname ASC');
@@ -80,7 +81,7 @@ class AdminController extends BaseAdminController {
 
 		$this->render('admin/baseTable', $vars);
 	}
-
+*/
 
 	public function contact_edit() {
 
@@ -104,6 +105,18 @@ class AdminController extends BaseAdminController {
 
 		$this->render('admin/contact', $vars);
 	}
+
+
+	public function student() {
+		return $this->base_list('student', array('id', 'firstname', 'email'));
+	}
+
+	public function student_action() {
+		return $this->base_action('student');
+	}
+
+
+	/* TODO: remove */
 
 	public function post() {
 		return $this->base_list('post', array('id', 'title', 'author', 'date'));

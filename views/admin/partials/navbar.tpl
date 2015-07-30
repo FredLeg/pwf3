@@ -1,4 +1,5 @@
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -6,11 +7,11 @@
                     <span class="icon-bar">222</span>
                     <span class="icon-bar">333</span>
                 </button>
-                <a class="navbar-brand" href="index.html">Gestion feuilles de présence WF3</a>
+                <a class="navbar-brand" href="{$HTTP_ROOT}admin">Administration WF3</a>
             </div>
             <!-- /.navbar-header -->
 
-            {*include file="admin/partials/topbar.tpl"*}
+            {include file="admin/partials/topbar.tpl"}
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -31,7 +32,9 @@
                         </li>
 
                         {foreach $pages as $page_url => $page_params}
+                        {if is_array($page_params)}
                         <li><a href="{$HTTP_ROOT}{$page_url}"{if $page_url == $current_page} class="active"{/if}><i class="fa {$page_params[1]} fa-fw"></i> {$page_params[0]}</a></li>
+                        {/if}
                         {/foreach}
                         <!--
                         <li class="active">
