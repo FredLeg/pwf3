@@ -9,7 +9,8 @@
 
 	<title>{$website_title} - {$title}</title>
 
-	<link rel="stylesheet" href="{$CSS_ROOT}bootstrap.min.css">
+	{* <link rel="stylesheet" href="{$CSS_ROOT}bootstrap.min.css"> *}
+	<link rel="stylesheet" href="{$CSS_ROOT}main.css">
 	<link rel="stylesheet" href="{$CSS_ROOT}bootstrap-theme.min.css">
 	<link rel="stylesheet" href="{$CSS_ROOT}bootstrap-checkbox.css">
 	<link rel="stylesheet" href="{$CSS_ROOT}styles.css">

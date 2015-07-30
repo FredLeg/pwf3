@@ -11,7 +11,8 @@
 
     <title>Admin</title>
 
-    <link href="{$CSS_ROOT}bootstrap.min.css" rel="stylesheet">
+    <<!--link href="{$CSS_ROOT}bootstrap.min.css" rel="stylesheet"-->
+    <link href="{$CSS_ROOT}main.css" rel="stylesheet">
     <link href="{$CSS_ROOT}admin/metisMenu.min.css" rel="stylesheet">
 
     <link href="{$CSS_ROOT}admin/dataTables.bootstrap.css" rel="stylesheet">
