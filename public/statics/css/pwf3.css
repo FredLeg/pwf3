@@ -52,6 +52,12 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
     font-weight: normal;
 }
 
+#se-delogger {
+    color : #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
 /*Sidebar*/
 form.search {
     margin-right: 110px;
