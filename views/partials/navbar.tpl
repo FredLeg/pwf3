@@ -11,10 +11,17 @@
 			</nav>
 
 			<nav class="nav navbar-nav navbar-right blog-nav">
-				<a href="{$HTTP_ROOT}login">
+				{if !User::isLogged()}
+				<a href="{$HTTP_ROOT}user/login">
 					<span class="se-logger" id="se-logger"> Se connecter</span>
 					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
 				</a>
+				{else}
+				<a href="{$HTTP_ROOT}use/logout">
+					<span class="se-logger" id="se-delogger"> Se déconnecter</span>
+					<i class="glyphicon glyphicon-log-out aria-hidden"="true"></i>
+				</a>
+				{/if}
 			</nav>
 		</div>
 	</div>

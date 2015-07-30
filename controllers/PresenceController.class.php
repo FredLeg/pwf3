@@ -4,8 +4,14 @@ class PresenceController extends BaseController {
 
 	public function index() {
 
+		$day = $this->getParam(0, date('Y-m-d'));
+
 		$session_id = 10;
 		$students = Student::getList( 'SELECT * FROM student WHERE session_id='.$session_id );
+
+		foreach($students as $student) {
+			$student->setPresence($day);
+		}
 
 		$vars = array(
 			'title' =>'Feuille de présence WebForce 3',
@@ -20,48 +26,91 @@ class PresenceController extends BaseController {
 
 	public function update() {
 
-		$actions = array('r1'=>true, 'r2'=>true, 'd1'=>true, 'd2'=>true, 'a'=>true);
+		try {
 
-		$isPost = $this->request->isPost();
+			$actions = array('r1'=>true, 'r2'=>true, 'd1'=>true, 'd2'=>true, 'absent'=>true);
 
-		if ($isPost) {
+			$isPost = $this->request->isPost();
 
-			$student_id = (int) $this->request->post('student_id', '');
-			$action = $this->request->post('action', '');
-			$date = $this->request->post('date', '');
-			$value = (int) $this->request->post('value', 0);
+			if ($isPost) {
 
-			if (empty($student_id) ||
-				empty($action) ||
-				empty($date)) {
-				exit('Error');
+				$student_id = (int) $this->request->post('student_id', '');
+				$action = $this->request->post('action', '');
+				$day = $this->request->post('day', '');
+				$value = (int) $this->request->post('value', 0);
+
+				if (empty($student_id) ||
+					empty($action) ||
+					empty($day)) {
+					throw new Exception('Undefined params');
+				}
+
+				if (empty($actions[$action])) {
+					throw new Exception('Undefined action');
+				}
+
+				if (Utils::isValidTimeStamp($day) === false) {
+					$day = strtotime($day);
+				}
+				$day = date('Y-m-d', $day);
+
+				$vars = array(
+					'student_id' => $student_id,
+					'day' => $day
+				);
+
+				$actions = array(
+					$action => $value
+				);
+
+				switch($action) {
+					case 'r1':
+						$actions['r2'] = 0;
+						$actions['absent'] = 0;
+					break;
+					case 'r2':
+						$actions['r1'] = 0;
+						$actions['absent'] = 0;
+					break;
+					case 'd1':
+						$actions['d2'] = 0;
+						$actions['absent'] = 0;
+					break;
+					case 'd2':
+						$actions['d1'] = 0;
+						$actions['absent'] = 0;
+					break;
+					case 'absent':
+						$actions['r1'] = 0;
+						$actions['r2'] = 0;
+						$actions['d1'] = 0;
+						$actions['d2'] = 0;
+					break;
+				}
+
+				$sql_actions = '';
+				foreach($actions as $action => $value) {
+					$sql_actions .= ', '.$action.' = :'.$action;
+					$vars[$action] = $value;
+				}
+
+				$sql = 'INSERT INTO presence SET student_id = :student_id, day = :day, update_date = NOW()'.$sql_actions.' ON DUPLICATE KEY UPDATE update_date = NOW()'.$sql_actions;
+
+				$db = Db::getInstance();
+				$query = $db->prepare($sql);
+				Db::bindValues($query, $vars);
+				$query->execute();
+
+				$result = $db->lastInsertId() || $query->rowCount();
+
+				if (!$result) {
+					throw new Exception('Query error');
+				}
+				exit(json_encode($vars));
 			}
 
-			if (empty($actions[$action])) {
-				exit('Error');
-			}
-
-			$date = date('Y-m-d', $date);
-
-			$vars = array(
-				'student_id' => $student_id,
-				$action => $value,
-				'date' => $date
-			);
-
-			print_r($vars);
-
-			$db = Db::getInstance();
-			$query = $db->prepare('INSERT INTO presence SET student_id = :student_id, '.$action.' = :'.$action.', day = :date ON DUPLICATE KEY UPDATE '.$action.' = :'.$action);
-
-
-
-			Db::bindValues($query, $vars);
-			$query->execute();
-
-			$result = $db->lastInsertId() || $query->rowCount();
-
-			exit($result);
+		} catch (Exception $e) {
+			exit(json_encode(array('error' => $e->getMessage())));
 		}
 	}
 

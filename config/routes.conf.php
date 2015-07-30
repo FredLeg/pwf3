@@ -62,5 +62,10 @@ $routes = array(
 	'logout' => array(
 		'target' => 'logger',
 		'action' => 'logout'
-	)
+	),
+
+	'presence/([0-9-]*)' => array(
+		'target' => 'presence',
+		'action' => 'index'
+	),
 );

@@ -14,6 +14,8 @@ class Student extends Model {
 	protected $email;
 	protected $phone;
 
+	private $presence;
+
 	/* Getters */
 	public function getId() {
 		return $this->id;
@@ -58,6 +60,11 @@ class Student extends Model {
 	public function getPhone() {
 		return $this->phone;
 	}
+	public function getPresence() {
+		return $this->presence;
+	}
+
+
 	/* Setters */
 	public function setId($id) {
 		$this->id = $id;
@@ -94,6 +101,13 @@ class Student extends Model {
 	}
 	public function setPhone($phone) {
 		$this->phone = $phone;
+	}
+	public function setPresence($day = null) {
+		if (is_null($day)) {
+			$day = date('Y-m-d');
+		}
+
+		$this->presence = new Presence(Db::select('SELECT * FROM presence WHERE day = :day', array('day' => $day)));
 	}
 
 	public function getForm($type, $action, $request, $isPost = false, $errors = array()) {

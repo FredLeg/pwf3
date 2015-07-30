@@ -6,12 +6,11 @@
         <div class="container">
           <div class="row" id="logo-footer">
             <div class="col-md-12">
-                <p>
+                <span id="se-logger">
                   <a href="#">{t}Back to top{/t}</a>
-                </p>
+                </span>
                 <p>
-                  <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015
-                  </a>
+                  <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015</a>
                 </p>
             </div>
           </div>
@@ -51,16 +50,35 @@
 
         var student_id = $(this).closest('.presence').data('id');
         var action = $(this).attr('name');
-        var date = parseInt($.now()) / 1000;
+        var day = parseInt($.now() / 1000);
         var value = $(this).prop('checked') ? 1 : 0;
 
         $.ajax({
           method: "POST",
           url: HTTP_ROOT+"presence/update",
-          data: {student_id: student_id, action: action, value: value, date: date}
+          data: {student_id: student_id, action: action, value: value, day: day},
+          dataType: 'json'
         })
         .done(function(result) {
-          console.log(result);
+          if (typeof(result.error) !== 'undefined') {
+            alert(result.error);
+          } else {
+            var actions = {'r1':true, 'r2':true, 'd1':true, 'd2':true, 'absent':true};
+            for (var i in result) {
+
+               if (typeof(actions[i]) !== 'undefined' && actions[i] === true) {
+
+                var checked = parseInt(result[i]) ? true : false;
+
+                console.log(i, result[i], value, '#presence-'+result.student_id+' input.'+i, checked);
+
+                //checkbox_options.checked = checked;
+
+                //$('#presence-'+result.student_id+' .'+i).checkbox(checkbox_options);
+                $('#presence-'+result.student_id+' input.'+i).checkbox({'checked': checked});
+              }
+            }
+          }
         });
 
       });
