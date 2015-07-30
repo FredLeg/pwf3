@@ -141,12 +141,11 @@ h1 {
 {
     width: 200px;
     height: auto;
-    padding: 10px;
-    border-style:;
+    padding: 5px;
     border-width: 1px;
     border-color: #ababab;
     opacity: 0.8; /*initial opacity of images*/
-    margin: 0 2px; /*margin between images*/
+    margin: 0 -6px; /*margin between images*/
     float: left;
 }
 #nteam .presence:hover

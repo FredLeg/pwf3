@@ -24,33 +24,31 @@
 
 								<div class="row" id="checkbox-align">
 
-
-
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Petit Retard">
-										<input type="checkbox" name="r1" class="r1 checkbox-control" data-checked="warning" />
+										<input type="checkbox" name="r1" class="r1 checkbox-control" {if $student->presence->r1}checked{/if} data-checked="warning"/>
 										<span class="control">R1</span>
 									</div>
 
-
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Grand Retard">
-										<input type="checkbox" name="r2" class="r2 checkbox-control" data-checked="danger"/>
+										<input type="checkbox" name="r2" class="r2 checkbox-control" {if $student->presence->r2}checked{/if} data-checked="danger"/>
 										<span class="control">R2</span>
 									</div>
 
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Petit Départ">
-										<input type="checkbox" name="d1" class="d1 checkbox-control" data-checked="warning"/>
+										<input type="checkbox" name="d1" class="d1 checkbox-control" {if $student->presence->d1}checked{/if} data-checked="warning"/>
 										<span class="control">D1</span>
 									</div>
 
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Grand Départ">
-										<input type="checkbox" name="d2" class="d2 checkbox-control" data-checked="danger"/>
+										<input type="checkbox" name="d2" class="d2 checkbox-control" {if $student->presence->d2}checked{/if} data-checked="danger"/>
 										<span class="control">D2</span>
 									</div>
 
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Absence">
-										<input type="checkbox" name="absent" class="absent checkbox-control" data-checked="danger"/>
+										<input type="checkbox" name="absent" class="absent checkbox-control" {if $student->presence->absent}checked{/if} data-checked="danger"/>
 										<span class="control">Ab</span>
 									</div>
+
 								</div>
 							</div>
 						</div>
