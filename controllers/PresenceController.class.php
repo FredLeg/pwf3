@@ -4,6 +4,10 @@ class PresenceController extends BaseController {
 
 	public function index() {
 
+		if (!User::isLogged()) {
+			$this->response->redirect(ROOT_HTTP.'login');
+		}
+
 		$day = $this->getParam(0, date('Y-m-d'));
 
 		$session_id = 10;
@@ -12,6 +16,7 @@ class PresenceController extends BaseController {
 		foreach($students as $student) {
 			$student->setPresence($day);
 		}
+
 
 		$vars = array(
 			'title' =>'Feuille de présence WebForce 3',
@@ -27,6 +32,10 @@ class PresenceController extends BaseController {
 	public function update() {
 
 		try {
+
+			if (!User::isLogged()) {
+				throw new Exception('Not logged');
+			}
 
 			$actions = array('r1'=>true, 'r2'=>true, 'd1'=>true, 'd2'=>true, 'absent'=>true);
 
@@ -94,7 +103,9 @@ class PresenceController extends BaseController {
 					$vars[$action] = $value;
 				}
 
-				$sql = 'INSERT INTO presence SET student_id = :student_id, day = :day, update_date = NOW()'.$sql_actions.' ON DUPLICATE KEY UPDATE update_date = NOW()'.$sql_actions;
+				$vars['update_user_id'] = $this->session->user_id;
+
+				$sql = 'INSERT INTO presence SET student_id = :student_id, day = :day, update_date = NOW(), update_user_id = :update_user_id'.$sql_actions.' ON DUPLICATE KEY UPDATE update_user_id = :update_user_id, update_date = NOW()'.$sql_actions;
 
 				$db = Db::getInstance();
 				$query = $db->prepare($sql);

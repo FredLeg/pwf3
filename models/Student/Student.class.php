@@ -107,7 +107,7 @@ class Student extends Model {
 			$day = date('Y-m-d');
 		}
 
-		$this->presence = new Presence(Db::select('SELECT * FROM presence WHERE day = :day', array('day' => $day)));
+		$this->presence = new Presence(Db::selectOne('SELECT * FROM presence WHERE id = :id AND day = :day', array('id' => $this->id, 'day' => $day)));
 	}
 
 	public function getForm($type, $action, $request, $isPost = false, $errors = array()) {

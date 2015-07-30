@@ -169,7 +169,8 @@ class UserController extends BaseController {
 			'success' => $success
 		);
 
-		return $this->render('authent', $vars);
+		return $this->response->redirect(ROOT_HTTP.'trombino');
+		//return $this->render('authent', $vars);
 	}
 
 }

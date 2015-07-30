@@ -6,7 +6,7 @@
         <div class="container">
           <div class="row" id="logo-footer">
             <div class="col-md-12">
-                <span id="se-logger">
+                <span>
                   <a href="#">{t}Back to top{/t}</a>
                 </span>
                 <p>
