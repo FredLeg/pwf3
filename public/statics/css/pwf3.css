@@ -212,8 +212,8 @@ h1 {
     border-top: 3px solid #e5e5e5;
 }
 
-#logo-footer {
-  color: #fff;
+.blog-footer a {
+color: #fff;
 }
 
 .blog-footer p:last-child {
