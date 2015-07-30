@@ -1,6 +1,6 @@
 <?php
 
-class School_Session extends Model {
+class Promotion extends Model {
 
 	protected $id;
 	protected $school_id;

@@ -150,7 +150,6 @@ class User extends Model {
 
 		$result = Db::selectOne('SELECT * FROM user WHERE email = :email', array('email' => $this->email));
 
-
 		if (!empty($result)) {
 
 			$user = new User($result);
@@ -194,14 +193,13 @@ class User extends Model {
 
 
 	public function login() {
+
 		if (!$this->session->isActive()) {
 			return false;
 		}
+
 		$this->session->user_id = $this->id;
 		$this->session->firstname = $this->firstname;
-
-		print_r($this->session);
-		exit();
 
 		return true;
 	}

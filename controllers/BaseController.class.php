@@ -61,7 +61,10 @@ abstract class BaseController extends Controller {
 			return false;
 		}
 
-		$page_level = static::$pages[$page][2];
+		$page_level = static::$pages[$page];
+		if (is_array(static::$pages[$page])) {
+			$page_level = $page_level[2];
+		}
 
 		if ($level < $page_level) {
 			return false;

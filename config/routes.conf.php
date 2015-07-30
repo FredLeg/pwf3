@@ -49,6 +49,11 @@ $routes = array(
 		'action' => 'post_action'
 	),
 
+	'admin/student/([a-zA-Z-_]+)/?([0-9]*)' => array(
+		'target' => 'admin',
+		'action' => 'student_action'
+	),
+
 	/* Logger */
 	'login' => array(
 		'target' => 'logger',

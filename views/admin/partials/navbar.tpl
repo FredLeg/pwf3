@@ -32,7 +32,9 @@
                         </li>
 
                         {foreach $pages as $page_url => $page_params}
+                        {if is_array($page_params)}
                         <li><a href="{$HTTP_ROOT}{$page_url}"{if $page_url == $current_page} class="active"{/if}><i class="fa {$page_params[1]} fa-fw"></i> {$page_params[0]}</a></li>
+                        {/if}
                         {/foreach}
                         <!--
                         <li class="active">

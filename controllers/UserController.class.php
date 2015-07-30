@@ -39,7 +39,23 @@ class UserController extends BaseController {
 			}
 		}
 
-		$form = $user->getLoginForm('insert', ROOT_HTTP.$this->lang->getUserLang().'/user/login', $this->request, $isPost, $errors);
+		if ($success) {
+
+			$user = User::get($this->session->user_id);
+
+			$goto_http = ROOT_HTTP;
+			if ($user->level==2){
+				$goto_http = ROOT_HTTP.'admin';
+			}
+			if ($user->level==3){
+				$goto_http = ROOT_HTTP.'presence';
+			}
+
+			$this->response->redirect($goto_http);
+		}
+
+
+		$form = $user->getLoginForm('create', ROOT_HTTP.$this->lang->getUserLang().'/user/login', $this->request, $isPost, $errors);
 
 		$vars = array(
 			'title' => Lang::_('Login'),
@@ -56,6 +72,7 @@ class UserController extends BaseController {
 
 		return $this->render('authent', $vars);
 	}
+
 
 
 	public function register() {
@@ -123,7 +140,7 @@ class UserController extends BaseController {
 				}
 			}
 
-			$form = $user->getRegisterForm('insert', ROOT_HTTP.$this->lang->getUserLang().'/user/register', $this->request, $isPost, $errors);
+			$form = $user->getRegisterForm('create', ROOT_HTTP.$this->lang->getUserLang().'/user/register', $this->request, $isPost, $errors);
 
 			$vars = array(
 				'title' => Lang::_('Register'),
@@ -139,6 +156,7 @@ class UserController extends BaseController {
 
 		return $this->render('authent', $vars);
 	}
+
 
 
 	public function logout() {

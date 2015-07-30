@@ -65,7 +65,7 @@ class Utils {
 		return preg_replace("/#(\\S+)/", '<a href="http://twitter.com/search?q=$1" target="_blank">#$1</a>', $str);
 	}
 
-	public static function redirectJs($page, $delay = 1) {
+	public static function redirectJs($page, $delay = 2) {
 		return '<script>setTimeout(function() { window.location.href = "'.$page.'"; }, '.($delay * 1000).');</script>';
 	}
 

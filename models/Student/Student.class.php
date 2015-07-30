@@ -87,10 +87,93 @@ class Student extends Model {
 		$this->from_city = $from_city;
 	}
 	public function setEmail($email) {
+		if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			throw new Exception('Email must be valid');
+		}
 		$this->email = $email;
 	}
 	public function setPhone($phone) {
 		$this->phone = $phone;
 	}
+
+	public function getForm($type, $action, $request, $isPost = false, $errors = array()) {
+
+		$promotions = Promotion::getList('SELECT * FROM session');
+		$sessions = array();
+		foreach($promotions as $key => $session) {
+			$sessions[] = array('id' => $session->id, 'name' => $session->date_start.' -> '.$session->date_end);
+		}
+
+		$genders = array(array('id' => 1, 'name' => 'Homme'), array('id' => 0, 'name' => 'Femme'));
+
+		$form = new Form('form-post-'.$type, 'form-post-'.$type, $action, 'POST', 'form-horizontal', $errors, $isPost);
+		$form->addField('session_id', Lang::_('Session'), 'select', $this->_getfieldvalue('session_id', $type, $request), true, '', @$errors['firstname'], null, null, $sessions);
+		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
+		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
+		$form->addField('gender', Lang::_('Gender'), 'select', $this->_getfieldvalue('gender', $type, $request), true, '', @$errors['gender'], null, null, $genders);
+		$form->addField('photo', Lang::_('Photo'), 'file', $this->_getfieldvalue('photo', $type, $request), false, '', @$errors['photo']);
+		$form->addField('date_birth', Lang::_('Date de naissance'), 'date', $this->_getfieldvalue('date_birth', $type, $request), true, '', @$errors['date_birth']);
+		$form->addField('num_pe', Lang::_('Numero Pole Emploi'), 'text', $this->_getfieldvalue('num_pe', $type, $request), true, '', @$errors['num_pe']);
+		$form->addField('from_city', Lang::_('From_city'), 'text', $this->_getfieldvalue('from_city', $type, $request), true, '', @$errors['from_city']);
+		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), false, '', @$errors['email']);
+		$form->addField('phone', Lang::_('Phone'), 'text', $this->_getfieldvalue('phone', $type, $request), false, '', @$errors['phone']);
+
+		return $form;
+	}
+
+	public function insert() {
+
+		return Db::insert(
+			'INSERT INTO student (session_id, firstname, lastname, gender, photo, date_birth, num_pe, from_city, email, phone)
+		 	 VALUES (:session_id, :firstname, :lastname, :gender, :photo, :date_birth, :num_pe, :from_city, :email, :phone)',
+			array(
+				'session_id' => $this->session_id,
+				'firstname' => $this->firstname,
+				'lastname' => $this->lastname,
+				'gender' => $this->gender,
+				'photo' => $this->photo,
+				'date_birth' => $this->date_birth,
+				'num_pe' => $this->num_pe,
+				'from_city' => $this->from_city,
+				'email' => $this->email,
+				'phone' => $this->phone
+			)
+		);
+	}
+
+	public function update() {
+
+		if (empty($this->id)) {
+			throw new Exception('Update error - Undefined post id');
+		}
+
+		return Db::update(
+			'UPDATE student SET session_id = :session_id, firstname = :firstname, lastname = :lastname, gender = :gender, photo = :photo, date_birth = :date_birth, num_pe = :num_pe, from_city = :from_city, email = :email, phone = :phone
+		 	 WHERE id = :id',
+			array(
+				'session_id' => $this->session_id,
+				'firstname' => $this->firstname,
+				'lastname' => $this->lastname,
+				'gender' => $this->gender,
+				'photo' => $this->photo,
+				'date_birth' => $this->date_birth,
+				'num_pe' => $this->num_pe,
+				'from_city' => $this->from_city,
+				'email' => $this->email,
+				'phone' => $this->phone,
+				'id' => $this->id
+			)
+		);
+	}
+
+	public function delete() {
+
+		if (empty($this->id)) {
+			throw new Exception('Delete error - Undefined student id');
+		}
+
+		return Db::delete('DELETE FROM student WHERE id = :id', array('id' => $this->id));
+	}
+
 
 }

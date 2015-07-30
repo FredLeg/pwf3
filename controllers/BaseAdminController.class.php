@@ -7,7 +7,7 @@ abstract class BaseAdminController extends BaseController {
         'admin/school/' => array('Ecoles', 'fa-file-text', User::USER_LEVEL_ADMIN),
         'admin/session/' => array('Sessions', 'fa-file-text', User::USER_LEVEL_ADMIN),
         'admin/student/' => array('Étudiants', 'fa-file-text', User::USER_LEVEL_ADMIN),
-        'admin/base_list/' => array('base_list', 'fa-file-text', User::USER_LEVEL_ADMIN),
+        'admin/student_action' => User::USER_LEVEL_ADMIN
 	);
 
 
@@ -15,7 +15,7 @@ abstract class BaseAdminController extends BaseController {
 
 		parent::__construct();
 
-		$vars['website_title']       = 'Backoffice';
+		$vars['website_title']       = 'Admin WF3';
 		$vars['website_description'] = 'Admin Description';
 		$vars['author']              = 'Admin Author';
 
@@ -29,7 +29,8 @@ abstract class BaseAdminController extends BaseController {
 
 		//echo 'id: '.$user->id.', level: '.$user->level;
 
-		if (!$this->isAllowedAccess($this->route, $user->level)) {
+		if (!$this->isAllowedAccess($this->route, $user->level) &&
+			!$this->isAllowedAccess($this->target.'/'.$this->action, $user->level)) {
 
 			//throw new Exception('Not allowed access');
 			exit('Not allowed access');

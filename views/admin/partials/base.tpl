@@ -5,7 +5,7 @@
                         {if !empty($isPost) && !empty($success)}
                             <div class="alert alert-success" role="success">{t}Success {$action}{/t}</div>
                             {assign var=redirect value="{$HTTP_ROOT}admin/{$entity_name}"}
-                            {Utils::redirectJS($redirect, 1)}
+                            {Utils::redirectJS($redirect, 0)}
                         {else}
 
                             <a href="{$HTTP_ROOT}admin/{$entity_name}/create" class="btn btn-primary">{t}Add{/t} {$entity_name}</a>
