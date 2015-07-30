@@ -78,7 +78,7 @@ h1 {
 /*Main*/
 #nteam
 {
-    width: 100%;
+    width: auto;
 }
 #nteam .container
 {
@@ -90,7 +90,7 @@ h1 {
 }
 #nteam .title
 {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
 }
 #nteam .field

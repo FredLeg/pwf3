@@ -24,10 +24,13 @@
 
 								<div class="row" id="checkbox-align">
 
+
+
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Petit Retard">
 										<input type="checkbox" name="r1" class="r1 checkbox-control" data-checked="warning" />
 										<span class="control">R1</span>
 									</div>
+
 
 									<div class="checkbox-container" data-toggle="tooltip" data-placement="bottom" title="Grand Retard">
 										<input type="checkbox" name="r2" class="r2 checkbox-control" data-checked="danger"/>
