@@ -7,7 +7,7 @@ module.exports = {
       expand: true,
       cwd: 'app/css/',
       src: '{,*/}*.css',
-      dest: '../app/public/statics/css/',
+      dest: '../public/statics/css/',
     }]
   }
 };
