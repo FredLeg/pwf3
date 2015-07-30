@@ -54,7 +54,7 @@ $routes = array(
 		'action' => 'student_action'
 	),
 
-	/* Logger */
+	/* Logger
 	'login' => array(
 		'target' => 'logger',
 		'action' => 'login'
@@ -62,7 +62,7 @@ $routes = array(
 	'logout' => array(
 		'target' => 'logger',
 		'action' => 'logout'
-	),
+	),*/
 
 	'presence/([0-9-]*)' => array(
 		'target' => 'presence',

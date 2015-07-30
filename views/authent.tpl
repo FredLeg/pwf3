@@ -15,7 +15,7 @@
 
 			{if !empty($isPost) && !empty($success)}
 				<div class="alert alert-success" role="success">{$title} {t}success{/t}</div>
-				{Utils::redirectJS($goto_http, 1)}
+				{*Utils::redirectJS($goto_http, 1)*}
 			{/if}
 
 			{if isset($form) && empty($success)}
