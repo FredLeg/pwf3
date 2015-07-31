@@ -215,7 +215,7 @@ h1 {
     text-align: center;
     background-color: #428bca;
     border-top: 3px solid #e5e5e5;
-    position: absolute;
+    position: fixed;
     bottom : 0;
     width: 100%;
 

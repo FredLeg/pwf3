@@ -27,7 +27,7 @@ class LoggerController extends BaseController {
 
 
 	public function logout() {
-		echo "Déconnexion";
+		echo "Déconnexion, Merci Eric";
 	}
 
 
