@@ -49,7 +49,7 @@ define('SESSION_DISABLED', false);
 define('SESSION_DEFAULT_NAME', 'framework_session');
 
 // DB CONFIG
-if ($_SERVER['HTTP_HOST'] == 'localhost') {
+if ($_SERVER['HTTP_HOST'] == 'localhost:81') {
 	//define('DB_HOST', 'localhost'); //localhost
 	//define('DB_USER', 'root'); //root
   define('DB_HOST', '192.168.1.19'); //localhost

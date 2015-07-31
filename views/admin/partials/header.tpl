@@ -11,7 +11,7 @@
 
     <title>Admin</title>
 
-    <<!--link href="{$CSS_ROOT}bootstrap.min.css" rel="stylesheet"-->
+    <!--link href="{$CSS_ROOT}bootstrap.min.css" rel="stylesheet"-->
     <link href="{$CSS_ROOT}main.css" rel="stylesheet">
     <link href="{$CSS_ROOT}admin/metisMenu.min.css" rel="stylesheet">
 
@@ -19,6 +19,7 @@
     <link href="{$CSS_ROOT}admin/dataTables.responsive.css" rel="stylesheet">
 
     <link href="{$CSS_ROOT}admin/styles.css" rel="stylesheet">
+    <link href="{$CSS_ROOT}admin/test.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{$CSS_ROOT}font-awesome.min.css" rel="stylesheet" type="text/css">
