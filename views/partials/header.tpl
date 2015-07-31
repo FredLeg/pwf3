@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="{$CSS_ROOT}pwf3.css">
 	<link rel="stylesheet" href="{$CSS_ROOT}font-awesome.3.0.2.css">
 	<link rel="stylesheet" href="{$CSS_ROOT}font-awesome-ie7.3.0.2.css">
+	<link rel="icon" type="image/png" href="public/statics/img/user.png" />
 </head>
 
 <body>

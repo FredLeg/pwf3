@@ -32,10 +32,19 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
   border-bottom: 3px solid #e5e5e5;
 }
 
+.blog-header {
+    margin-top:30px
+}
+
+.blog-content {
+    margin-bottom: 80px;
+}
+
 
 #logo {
   line-height: 50px;
   color: #fff;
+  padding: 8px;
 }
 .logowf3 {
   line-height: 50px;
@@ -50,12 +59,22 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
     color : #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
+    margin-left: 15px;
 }
 
 #se-delogger {
     color : #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
+    margin-left: 15px;
+}
+
+.log-position {
+    margin-right: 0px;
+}
+
+#date {
+    margin-left: 15px;
 }
 
 /*Sidebar*/
@@ -73,6 +92,10 @@ h1 {
 
 .lead blog-description {
     text-align : center;
+}
+
+#authent {
+    margin-top: 50px;
 }
 
 /*Main*/
@@ -206,10 +229,13 @@ h1 {
 */
 
 .blog-footer {
-    padding: 5px 0;
+    padding: 8px 0;
     text-align: center;
     background-color: #428bca;
     border-top: 3px solid #e5e5e5;
+    position: fixed;
+    bottom : 0;
+    width: 100%;
 }
 
 .blog-footer a {
@@ -217,5 +243,18 @@ color: #fff;
 }
 
 .blog-footer p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.container {
+    width: 100%;
+}
+
+.presence-student {
+    float: left;
+    margin: 20px;
 }

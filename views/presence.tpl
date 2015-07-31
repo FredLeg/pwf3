@@ -9,12 +9,12 @@
 		<section class="article-content clearfix">
 
 			<div id="nteam">
-				<div class="container">
+				<div id="presence-container" class="container">
 
 					{if !empty($students)}
 					{foreach $students as $student}
 
-					<div class="col-md-3">
+					<div class="presence-student">
 						<div id="presence-{$student->id}" data-id="{$student->id}" class="presence">
 							<div class="details">
 								<img class="img-thumbnail" alt="avatar" src="{$url_trombino}{$student->getPathPhoto()}" height="170px">
@@ -55,6 +55,7 @@
 					</div>
 					{/foreach}
 					{/if}
+					<div class="clearfix"></div>
 				</div>
 			</div>
 		</section>

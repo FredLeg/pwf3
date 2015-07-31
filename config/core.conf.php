@@ -49,11 +49,9 @@ define('SESSION_DISABLED', false);
 define('SESSION_DEFAULT_NAME', 'framework_session');
 
 // DB CONFIG
-if ($_SERVER['HTTP_HOST'] == 'localhost:81') {
-	//define('DB_HOST', 'localhost'); //localhost
-	//define('DB_USER', 'root'); //root
-  define('DB_HOST', '192.168.1.19'); //localhost
-  define('DB_USER', 'pwf3_user'); //root
+if ($_SERVER['HTTP_HOST'] == 'localhost') {
+	define('DB_HOST', '192.168.1.19'); //localhost   192.168.1.19  //ERIC 192.168.1.36
+	define('DB_USER', 'pwf3_user');    //root        pwf3_user
 	define('DB_PASS', '');
 } else {
 	define('DB_HOST', '');

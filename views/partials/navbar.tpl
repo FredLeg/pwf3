@@ -3,7 +3,8 @@
 
 			<nav class="nav navbar-nav blog-nav">
 
-				<h1 class="logowf3">WEBFORCE 3</h1>
+				<h1 class="logowf3"><img src="public/statics/img/template_WB3_header.png" alt="WEBFORCE 3"></h1>
+
 
 				<!--{foreach from=$pages item=page}
 				<a class="blog-nav-item {if $page.url == $current_page || $page.url == $target || $page.url == "$target/$action"}active{/if}" href="{$HTTP_ROOT}{$page.url}">{$page.name}</a>
@@ -23,6 +24,9 @@
 					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
 				</a>
 				{/if}
+				<div id="date">Nous sommes le {$smarty.now|date_format:"d/m/Y"}, il est {$smarty.now|date_format:"%H:%M"}
+					<i class="glyphicon glyphicon-time"="true"></i>
+				</div>
 			</nav>
 		</div>
 	</div>
