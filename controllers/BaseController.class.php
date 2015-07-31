@@ -24,11 +24,11 @@ abstract class BaseController extends Controller {
 			'target' => $this->target,
 			'action' => $this->action,
 			'lang' => $this->lang->getUserLang(),
-			'website_title' => 'Website Title',
-			'website_description' => 'Website Description',
-			'author' => 'Website Author',
-			'title' => '',
-			'description' => ''
+			'website_title' => 'Webforce 3',
+			'website_description' => 'Feuille de présence pour Webforce3',
+			'author' => 'Eric Madjarian, Fred Legembre, Denis Nerborac',
+			'title' => 'Webforce 3',
+			'description' => 'Feuille de présence pour Webforce3'
 		);
 
 		$vars['pages'] = self::$pages;
