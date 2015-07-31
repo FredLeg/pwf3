@@ -6,7 +6,7 @@ class LoggerController extends BaseController {
 	public function login() {
 
 		$isPost = $this->request->isPost();
-		$email = "frederic.legembre@gmail.com";
+		$email = "email@email.com";
 		$password = "123456";
   		$errors = array();
 
@@ -27,7 +27,7 @@ class LoggerController extends BaseController {
 
 
 	public function logout() {
-		echo "Bye bye";
+		echo "Déconnexion";
 	}
 
 

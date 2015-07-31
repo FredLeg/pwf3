@@ -24,6 +24,9 @@
 					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
 				</a>
 				{/if}
+				<div>Nous sommes le {$smarty.now|date_format:"d/m/Y"}, il est {$smarty.now|date_format:"%H:%M"}
+					<i class="glyphicon glyphicon-time"="true"></i>
+				</div>
 			</nav>
 		</div>
 	</div>

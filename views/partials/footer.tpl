@@ -10,7 +10,8 @@
                   <a href="#">{t}Back to top{/t}</a>
                 </span>
                 <p>
-                  <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015</a>
+                  <a href="http://www.webforce3.fr" title="Mentions légales">Webforce3 2015
+                  <i class="glyphicon glyphicon-copyright-mark aria-hidden"="true"></i></a>
                 </p>
             </div>
           </div>

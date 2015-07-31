@@ -36,6 +36,7 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
 #logo {
   line-height: 50px;
   color: #fff;
+  padding: 8px;
 }
 .logowf3 {
   line-height: 50px;
@@ -56,6 +57,10 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
     color : #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
+}
+
+.log-position {
+    margin-right: 0px;
 }
 
 /*Sidebar*/
