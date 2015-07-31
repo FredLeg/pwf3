@@ -206,10 +206,14 @@ h1 {
 */
 
 .blog-footer {
-    padding: 5px 0;
+    padding: 8px 0;
     text-align: center;
     background-color: #428bca;
     border-top: 3px solid #e5e5e5;
+    position: absolute;
+    bottom : 0;
+    width: 100%;
+
 }
 
 .blog-footer a {
