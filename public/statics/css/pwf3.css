@@ -36,6 +36,10 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
     margin-top:30px
 }
 
+.blog-content {
+    margin-bottom: 80px;
+}
+
 
 #logo {
   line-height: 50px;
@@ -232,7 +236,6 @@ h1 {
     position: fixed;
     bottom : 0;
     width: 100%;
-
 }
 
 .blog-footer a {
@@ -240,5 +243,18 @@ color: #fff;
 }
 
 .blog-footer p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.container {
+    width: 100%;
+}
+
+.presence-student {
+    float: left;
+    margin: 20px;
 }

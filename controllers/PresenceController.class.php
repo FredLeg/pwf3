@@ -17,12 +17,10 @@ class PresenceController extends BaseController {
 			$student->setPresence($day);
 		}
 
-
 		$vars = array(
 			'title' =>'Feuille de présence WebForce 3',
 			'description' => '', // date du jour à indiquer
 			'url_trombino' => IMG_HTTP.'trombino/',
-			'pwf3Css' => CSS_HTTP. 'pwf3.css',
 			'students' => $students,
 		);
 

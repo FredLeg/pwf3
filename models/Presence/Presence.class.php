@@ -5,10 +5,10 @@ class Presence extends Model {
   protected $id;
   protected $student_id;
   protected $day;
-  protected $R1;
-  protected $R2;
-  protected $D1;
-  protected $D2;
+  protected $r1;
+  protected $r2;
+  protected $d1;
+  protected $d2;
   protected $absent;
   protected $motif;
   protected $update_user_id;
@@ -25,16 +25,16 @@ class Presence extends Model {
     return $this->day;
   }
   public function getR1() {
-    return $this->R1;
+    return $this->r1;
   }
   public function getR2() {
-    return $this->R2;
+    return $this->r2;
   }
   public function getD1() {
-    return $this->D1;
+    return $this->d1;
   }
   public function getD2() {
-    return $this->D2;
+    return $this->d2;
   }
   public function getAbsent() {
     return $this->absent;
@@ -59,17 +59,17 @@ class Presence extends Model {
   public function setDay($day) {
     $this->day = $day;
   }
-  public function setR1($R1) {
-    $this->R1 = $R1;
+  public function setR1($r1) {
+    $this->r1 = $r1;
   }
-  public function setR2($R2) {
-    $this->R2 = $R2;
+  public function setR2($r2) {
+    $this->r2 = $r2;
   }
-  public function setD1($D1) {
-    $this->D1 = $D1;
+  public function setD1($d1) {
+    $this->d1 = $d1;
   }
-  public function setD2($D2) {
-    $this->D2 = $D2;
+  public function setD2($d2) {
+    $this->d2 = $d2;
   }
   public function setAbsent($absent) {
     $this->absent = $absent;

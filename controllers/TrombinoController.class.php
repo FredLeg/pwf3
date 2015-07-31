@@ -11,7 +11,6 @@ class TrombinoController extends BaseController {
 			'title' => 'WebForce3',
 			'description' => 'Les étudiants de votre groupe',
 			'url_trombino' => IMG_HTTP.'trombino/',
-			'pwf3Css' => CSS_HTTP. 'pwf3.css',
 			'students' => $students,
 		);
 
