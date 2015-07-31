@@ -32,6 +32,10 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
   border-bottom: 3px solid #e5e5e5;
 }
 
+.blog-header {
+    margin-top:30px
+}
+
 
 #logo {
   line-height: 50px;
@@ -51,16 +55,22 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
     color : #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
+    margin-left: 15px;
 }
 
 #se-delogger {
     color : #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
+    margin-left: 15px;
 }
 
 .log-position {
     margin-right: 0px;
+}
+
+#date {
+    margin-left: 15px;
 }
 
 /*Sidebar*/
@@ -78,6 +88,10 @@ h1 {
 
 .lead blog-description {
     text-align : center;
+}
+
+#authent {
+    margin-top: 50px;
 }
 
 /*Main*/

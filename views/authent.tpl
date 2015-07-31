@@ -5,9 +5,9 @@
 		<p class="lead blog-description">{$description}</p>
 	</div>
 
-	<div class="row">
+	<div class="row" id="authent">
 
-		<div class="col-sm-8 blog-main">
+		<div class="col-sm-10 blog-main">
 
 			{if !empty($errors)}
 			<div class="alert alert-danger" role="danger">{if !empty($errors['authent'])}{$errors['authent']}{else}{$title} {t}failed{/t}{/if}</div>
