@@ -45,6 +45,9 @@
                 <li><a href="{$HTTP_ROOT}admin/promotion"{if 'promotion' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Promotions</a></li>
                 {/if}
 
+                <li><a href="{$HTTP_ROOT}admin/presence"{if 'admin/presence' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Présences - En cours Eric</a></li>
+
+
                 {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
                 <li><a href="{$HTTP_ROOT}admin/student"{if 'student' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Étudiants</a></li>
                 {/if}
@@ -61,9 +64,9 @@
             *}
                 {if $user->isRole('dev')}
                 <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers A supprimer<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{$HTTP_ROOT}tests/fred/crop">crop image</a></li>
+                        <li><a href="{$HTTP_ROOT}tests/crop">crop image</a></li>
                         <li><a href="{$HTTP_ROOT}load/excel">load excel</a></li>
                     </ul>
                 </li>

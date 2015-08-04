@@ -37,12 +37,13 @@ abstract class BaseAdminController extends BaseController {
 EOF;
 
 	public static $pages = array(
-		'admin/index/' => array('Dashboard', 'fa-dashboard', User::USER_LEVEL_ADMIN),
+				'admin/index/' => array('Dashboard', 'fa-dashboard', User::USER_LEVEL_ADMIN),
         'admin/user/' => array('Utilisateurs', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/school/' => array('Écoles', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/promotion/' => array('Promotions', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/student/' => array('Étudiants', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/student_action' => User::USER_LEVEL_ADMIN,
+        'admin/presence/' => User::USER_LEVEL_ADMIN,
 	);
 
 
