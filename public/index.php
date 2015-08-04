@@ -17,6 +17,11 @@ try {
 
 	$response = new Response();
 
+	$vars = array(
+		'title' => 'Erreur',
+		'description' => 'E',
+	);
+
 	if ($e instanceOf AutoloadException || $e instanceOf ViewException) {
         $response->render('500');
     }

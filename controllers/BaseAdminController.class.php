@@ -1,13 +1,48 @@
 <?php
 abstract class BaseAdminController extends BaseController {
 
+	public static $menu = <<<EOF
+	{
+	  "admin/index/":
+	      {
+	          "title": "Dashboard",
+	          "icon":"fa-dashboard",
+	          "roles":[2,4,5],
+	      },
+	  "admin/user/":
+	  [
+	      {
+	          "title": "Utilisateurs",
+	          "icon":"fa-dashboard",
+	          "roles":[2,4,5],
+	      },
+		  "admin/user_infos/":
+		      {
+		          "title": "Dashboard",
+		          "icon":"fa-dashboard",
+		          "roles":[2,4,5],
+		      },
+		  "admin/user_autre/":
+		      {
+		          "title": "Dashboard",
+		          "icon":"fa-dashboard",
+		          "roles":[2,4,5],
+		      },
+	   ],
+	  "admin/index/":
+		  	{
+		  		"roles":[2,4,5]
+		  	},
+	}
+EOF;
+
 	public static $pages = array(
 		'admin/index/' => array('Dashboard', 'fa-dashboard', User::USER_LEVEL_ADMIN),
-        'admin/user/' => array('Utilisateurs', 'fa-file-text', User::USER_LEVEL_ADMIN),
-        'admin/school/' => array('Ecoles', 'fa-file-text', User::USER_LEVEL_ADMIN),
-        'admin/session/' => array('Sessions', 'fa-file-text', User::USER_LEVEL_ADMIN),
-        'admin/student/' => array('Étudiants', 'fa-file-text', User::USER_LEVEL_ADMIN),
-        'admin/student_action' => User::USER_LEVEL_ADMIN
+        'admin/user/' => array('Utilisateurs', 'fa-table', User::USER_LEVEL_ADMIN),
+        'admin/school/' => array('Écoles', 'fa-table', User::USER_LEVEL_ADMIN),
+        'admin/session/' => array('Sessions', 'fa-table', User::USER_LEVEL_ADMIN),
+        'admin/student/' => array('Étudiants', 'fa-table', User::USER_LEVEL_ADMIN),
+        'admin/student_action' => User::USER_LEVEL_ADMIN,
 	);
 
 
@@ -20,6 +55,7 @@ abstract class BaseAdminController extends BaseController {
 		$vars['author']              = 'Admin Author';
 
 		$vars['pages'] = self::$pages;
+		$vars['menu']  = self::$menu;
 
 		if (!User::isLogged()) {
 			$this->response->redirect(ROOT_HTTP.'login');

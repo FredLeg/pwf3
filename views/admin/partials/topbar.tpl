@@ -51,6 +51,7 @@
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
+ *}
 
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -131,7 +132,8 @@
                     </ul>
                     <!-- /.dropdown-tasks -->
                 </li>
- *}
+
+ {*
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -192,7 +194,7 @@
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
-
+*}
 
                 <!-- /.dropdown -->
                 <li class="dropdown">

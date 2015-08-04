@@ -1,4 +1,4 @@
-{*include file='partials/header.tpl'*}
+{include file='partials/header.tpl'}
 
 <div class="container">
 
@@ -14,4 +14,4 @@
 
 </div>
 
-{*include file='partials/footer.tpl'*}
+{include file='partials/footer.tpl'}

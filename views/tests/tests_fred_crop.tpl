@@ -1,6 +1,7 @@
 {include file="partials/header.tpl"}
 
-<br>{$current_page}
-<br>ID = [{$id}]
+<h1>Crop image</h1>
+
+
 
 {include file="partials/footer.tpl"}

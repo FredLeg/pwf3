@@ -1,6 +1,15 @@
 <?php
 class User extends Model {
 
+	protected $roles =  [
+		'admin'  => [7, 2, 4, 10, 11],
+		'pdt'    => [1],
+		'dir'    => [3],
+		'assdir' => [9],
+		'prof'   => [2, 4, 5, 6, 8],
+		'dev'    => [7, 4, 10, 11],
+	];
+
 	const USER_LEVEL_VISITOR = 1;
 	const USER_LEVEL_ADMIN = 2;
 
@@ -25,6 +34,19 @@ class User extends Model {
 		$this->session = Session::getInstance();
 	}
 
+
+	/* Rôles --------------------------------------------------------------- */
+	public function getRoles() {
+		$arr_roles = [];
+		$user_id = $this->id;
+		foreach ($this->roles as $key => $values) {
+			if (in_array($user_id, $values)) $arr_roles[] = $key;
+		}
+		return $arr_roles;
+	}
+	public function isRole( $role_name ) {
+		return in_array($this->id, $this->roles[$role_name]);
+	}
 
 	/* Getters ------------------------------------------------------------- */
 	public function getId() {
@@ -186,7 +208,7 @@ class User extends Model {
 		$form = new Form('', 'form-login', $action, 'POST', 'form-horizontal', $errors, $isPost);
 		$form->addField('email', Lang::_('Email'), 'email', $this->_getfieldvalue('email', $type, $request), true, '', !empty($errors['authent']) ? true : false);
 		$form->addField('password', Lang::_('Password'), 'password', '', true, '', !empty($errors['authent']) ? true : false);
-		$form->addField('remember_me', Lang::_('Remember me'), 'checkbox', $this->_getfieldvalue('remember_me', $type, $request), false, '');
+		//$form->addField('remember_me', Lang::_('Remember me'), 'checkbox', $this->_getfieldvalue('remember_me', $type, $request), false, '');
 
 		return $form;
 	}

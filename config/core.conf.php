@@ -4,9 +4,32 @@ define('CORE_DEBUG', 1);
 
 // PATHS
 define('CONFIG_DIR', 'config');
-define('ROOT_DIR', trim(str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace(array('\\', CONFIG_DIR), array('/', ''), __DIR__)), '/'));
-define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_DIR.'/');
-define('ROOT_HTTP', 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].'/'.ROOT_DIR.'/');
+define('ROOT_DIR_old', trim(str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace(array(DIRECTORY_SEPARATOR, CONFIG_DIR), array('/', ''), __DIR__)), '/'));
+if ( strlen(dirname(__DIR__)) > strlen($_SERVER['DOCUMENT_ROOT']) ) {
+	define('ROOT_GAP', str_replace(DIRECTORY_SEPARATOR,'/',substr( dirname(__DIR__) , strlen($_SERVER['DOCUMENT_ROOT']))) );
+} else {
+	define('ROOT_GAP', '');
+}
+define('ROOT_DIR', substr(ROOT_GAP,1));
+//define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_DIR.'/');
+define('ROOT_PATH', str_replace(DIRECTORY_SEPARATOR,'/',dirname(__DIR__)).'/');
+//define('ROOT_HTTP', 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].'/'.ROOT_DIR.'/');
+define('ROOT_HTTP','http'.(!empty($_SERVER['HTTPS']) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].ROOT_GAP.'/');
+
+if ( $_SERVER['HTTP_HOST'] != 'localhost' ) {
+	echo 'HTTP_HOST &#9830; '.$_SERVER['HTTP_HOST'].'<br>';
+	echo '__DIR__ &#9830; '.__DIR__.'<br>';
+	echo 'CONFIG_DIR &#9830; '.CONFIG_DIR.'<br>';
+	echo 'ROOT_DIR_old &#9830; '.ROOT_DIR_old.'<br>';
+	echo 'ROOT_DIR &#9830; '.ROOT_DIR.'<br>';
+	echo 'str_replace1 &#9830; '.str_replace(array('\\', CONFIG_DIR), array('/', ''), __DIR__).'<br>';
+	echo '$_SERVER[DOCUMENT_ROOT] &#9830; '.$_SERVER['DOCUMENT_ROOT'].'<br>';
+	echo 'ROOT_GAP &#9830; '.ROOT_GAP.'<br>';
+	echo '<br>';
+	echo 'ROOT_PATH &#9830; '.ROOT_PATH.'<br>';
+	echo 'ROOT_HTTP &#9830; '.ROOT_HTTP.'<br>';
+	echo '<th>';
+}
 
 define('CURRENT_URI', trim(str_replace(ROOT_DIR, '', $_SERVER['REQUEST_URI']), '/'));
 define('CURRENT_PATH', parse_url(CURRENT_URI, PHP_URL_PATH));
@@ -50,12 +73,12 @@ define('SESSION_DEFAULT_NAME', 'framework_session');
 
 // DB CONFIG
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
-	define('DB_HOST', '192.168.1.19'); //localhost   192.168.1.19  //ERIC 192.168.1.36
-	define('DB_USER', 'pwf3_user');    //root        pwf3_user
+	define('DB_HOST', 'localhost'); //localhost   192.168.1.19  //ERIC 192.168.1.36
+	define('DB_USER', 'root');      //root        pwf3_user
 	define('DB_PASS', '');
 } else {
-	define('DB_HOST', '');
-	define('DB_USER', '');
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'root');
 	define('DB_PASS', '');
 }
 define('DB_ENGINE', 'mysql');

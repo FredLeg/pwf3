@@ -23,9 +23,8 @@
 			{/if}
 
 			{if !empty($fb_login_url)}
-			<hr>
-
-			<a href="{$fb_login_url}" class="btn btn-primary">{t}Connect with Facebook{/t}</a>
+				<hr>
+				<a href="{$fb_login_url}" class="btn btn-primary">{t}Connect with Facebook{/t}</a>
 			{/if}
 
 		</div>
