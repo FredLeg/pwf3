@@ -13,7 +13,11 @@
 
 			<nav class="nav navbar-nav navbar-right blog-nav">
 				{if User::isLogged()}
-				Bonjour {$user->firstname},
+				<span class="nom">Bonjour {$user->firstname},
+				</span>
+					<div id="date">nous sommes le {$smarty.now|date_format:"d/m/Y"}
+					<i class="glyphicon glyphicon-time"="true"></i>
+				</div>
 				<a href="{$HTTP_ROOT}logout">
 					<span class="se-logger" id="se-delogger"> Se déconnecter</span>
 					<i class="glyphicon glyphicon-log-out aria-hidden"="true"></i>
@@ -24,9 +28,6 @@
 					<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
 				</a>
 				{/if}
-				<div id="date">Nous sommes le {$smarty.now|date_format:"d/m/Y"}, il est {$smarty.now|date_format:"%H:%M"}
-					<i class="glyphicon glyphicon-time"="true"></i>
-				</div>
 			</nav>
 		</div>
 	</div>
