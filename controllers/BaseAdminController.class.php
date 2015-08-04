@@ -101,8 +101,6 @@ EOF;
 
 		$list = $class::getList($sql);
 
-		//echo '###'.$this->user->isRole('admin');
-
 		$table = new Table('data-table', $entity_name, $list, $cols, ROOT_HTTP.'admin/'.$entity_name.'/update', ROOT_HTTP.'admin/'.$entity_name.'/delete');
 
 		$vars = array(

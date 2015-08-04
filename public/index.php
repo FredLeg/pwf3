@@ -22,6 +22,17 @@ try {
 		'description' => 'Erreur',
 	);
 
+//
+	$class_exception = get_class($e);
+	$msg_exception = $class_exception.' : '.$e->getMessage();
+
+	Logger::log($msg_exception);
+
+	if (CORE_DEBUG) {
+		echo '<pre>'.$msg_exception.'</pre>';
+		exit();//
+    }
+//
 	if ($e instanceOf AutoloadException || $e instanceOf ActionControllerException) {
         $response->redirect(ROOT_HTTP.'error/404');
 	}
@@ -30,12 +41,4 @@ try {
         $response->redirect(ROOT_HTTP.'error/500');
     }
 
-	$class_exception = get_class($e);
-	$msg_exception = $class_exception.' : '.$e->getMessage();
-
-	Logger::log($msg_exception);
-
-	if (CORE_DEBUG) {
-		echo '<pre>'.$msg_exception.'</pre>';
-    }
 }

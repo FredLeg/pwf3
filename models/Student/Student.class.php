@@ -114,7 +114,10 @@ class Student extends Model {
 		$promotions = Promotion::getList('SELECT * FROM session');
 		$sessions = array();
 		foreach($promotions as $key => $session) {
-			$sessions[] = array('id' => $session->id, 'name' => $session->date_start.' -> '.$session->date_end);
+
+			$session_date_label = ucfirst(Lang::_(strtolower(date('F', strtotime($session->date_start))))).' '.date('Y', strtotime($session->date_start)).' - '.ucfirst(Lang::_(strtolower(date('F', strtotime($session->date_end))))).' '.date('Y', strtotime($session->date_end));
+
+			$sessions[] = array('id' => $session->id, 'name' => $session_date_label);
 		}
 
 		$genders = array(array('id' => 1, 'name' => 'Homme'), array('id' => 0, 'name' => 'Femme'));

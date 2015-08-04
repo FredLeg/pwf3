@@ -2,8 +2,10 @@
 
 	<h1 class="page-header">Étudiants</h1>
 
+	{if empty($form)}
+
 	{if $user->isRole('admin') or $user->isRole('dir')}
-		<a href="{$HTTP_ROOT}admin/{$entity_name}/create" class="btn btn-primary">Ajouter</a>
+		<a href="{$HTTP_ROOT}admin/student/create" class="btn btn-primary">Ajouter</a>
 	{/if}
 
 	{if $user->isRole('dir')}
@@ -18,6 +20,8 @@
 		</div>
 		<hr>
 		<hr>
+	{/if}
+
 	{/if}
 
 	{include file="admin/partials/base.tpl" entity_name="student" back_link="{$HTTP_ROOT}admin/student"}

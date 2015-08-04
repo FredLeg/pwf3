@@ -109,6 +109,7 @@ class AdminController extends BaseAdminController {
 
 	public function student() {
 		return $this->base_list_sql('student', array('firstname', 'email'), 'SELECT * FROM student WHERE session_id = 10');
+//		return $this->base_list_sql('student', array('fullname', 'email'), 'SELECT *, CONCAT(firstname," ",lastname) as fullname FROM student WHERE session_id = 10');
 	}
 
 	public function student_action() {
