@@ -53,7 +53,7 @@
                 </li>
  *}
 
-                <!-- /.dropdown -->
+{*              <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -132,6 +132,7 @@
                     </ul>
                     <!-- /.dropdown-tasks -->
                 </li>
+*}
 
  {*
                 <!-- /.dropdown -->

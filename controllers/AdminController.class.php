@@ -134,6 +134,26 @@ class AdminController extends BaseAdminController {
 		return $this->base_action('contact');
 	}
 
+	public function presence() {
+
+		$presences = array(
+			array('Type', 'Count'),
+			array('r1', 10),
+			array('r2', 20),
+			array('d1', 3),
+			array('d2', 0),
+			array('absent', 10),
+		);
+
+		$this->response->addVar('presences_data', json_encode($presences));
+
+		return $this->base_list('presence', array('student_id', 'day', 'r1', 'r2', 'd1', 'd2', 'absent', 'motif'));
+	}
+
+	public function presence_action() {
+		return $this->base_action('presence');
+	}
+
 	public function search() {
 
 		$vars = array();
