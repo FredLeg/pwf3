@@ -31,20 +31,34 @@
                     <!-- /input-group -->
                 </li>
 
+                <li><a href="{$HTTP_ROOT}admin"{if 'dashboard' == $current_page} class="active"{/if}><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
+
                 {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dev')}
-                <li><a href="{$HTTP_ROOT}schools"{if 'schools' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Écoles</a></li>
+                <li><a href="{$HTTP_ROOT}admin/school"{if 'schools' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Écoles</a></li>
+                {/if}
+
+                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dir') or $user->isRole('dev')}
+                <li><a href="{$HTTP_ROOT}admin/user"{if 'user' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Utilisateurs</a></li>
                 {/if}
 
                 {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dev')}
-                <li><a href="{$HTTP_ROOT}presences"{if 'presences' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Présences</a></li>
+                <li><a href="{$HTTP_ROOT}admin/promotion"{if 'promotion' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Promotions</a></li>
                 {/if}
 
+                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
+                <li><a href="{$HTTP_ROOT}admin/student"{if 'student' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Étudiants</a></li>
+                {/if}
+
+                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
+                <li><a href="{$HTTP_ROOT}admin/presences"{if 'presences' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Présences</a></li>
+                {/if}
+            {*
                 {foreach $pages as $page_url => $page_params}
                 {if is_array($page_params)}
                 <li><a href="{$HTTP_ROOT}{$page_url}"{if $page_url == $current_page} class="active"{/if}><i class="fa {$page_params[1]} fa-fw"></i> {$page_params[0]}</a></li>
                 {/if}
                 {/foreach}
-
+            *}
                 {if $user->isRole('dev')}
                 <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers<span class="fa arrow"></span></a>

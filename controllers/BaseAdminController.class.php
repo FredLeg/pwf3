@@ -40,10 +40,11 @@ EOF;
 		'admin/index/' => array('Dashboard', 'fa-dashboard', User::USER_LEVEL_ADMIN),
         'admin/user/' => array('Utilisateurs', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/school/' => array('Écoles', 'fa-table', User::USER_LEVEL_ADMIN),
-        'admin/session/' => array('Sessions', 'fa-table', User::USER_LEVEL_ADMIN),
+        'admin/promotion/' => array('Promotions', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/student/' => array('Étudiants', 'fa-table', User::USER_LEVEL_ADMIN),
         'admin/student_action' => User::USER_LEVEL_ADMIN,
 	);
+
 
 
 	public function __construct() {
@@ -64,6 +65,11 @@ EOF;
 		$user = User::get($this->session->user_id);
 
 		//echo 'id: '.$user->id.', level: '.$user->level;
+		//echo $this->route;
+
+		//if (!$user->canDo($this->route)) {
+		//	exit('Not allowed action');
+		//}
 
 		if (!$this->isAllowedAccess($this->route, $user->level) &&
 			!$this->isAllowedAccess($this->target.'/'.$this->action, $user->level)) {
@@ -77,6 +83,10 @@ EOF;
 
 
 	protected function base_list($entity_name, $cols, $order = 'id') {
+		return $this->base_list_sql($entity_name, $cols, 'SELECT * FROM '.$entity_name.' ORDER BY '.$order);
+	}
+
+	protected function base_list_sql($entity_name, $cols, $sql) {
 
 		if (empty($cols)) {
 			throw new Exception('Base list error - Undefined columns for table');
@@ -88,7 +98,9 @@ EOF;
 			throw new Exception('Base list error - Undefined class '.$class);
 		}
 
-		$list = $class::getList('SELECT * FROM '.$entity_name.' ORDER BY '.$order);
+		$list = $class::getList($sql);
+
+		//echo '###'.$this->user->isRole('admin');
 
 		$table = new Table('data-table', $entity_name, $list, $cols, ROOT_HTTP.'admin/'.$entity_name.'/update', ROOT_HTTP.'admin/'.$entity_name.'/delete');
 
@@ -99,6 +111,7 @@ EOF;
 
 		$this->render('admin/'.$entity_name, $vars);
 	}
+
 
 
 	protected function base_action($entity_name) {

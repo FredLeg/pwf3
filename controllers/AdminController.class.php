@@ -53,14 +53,14 @@ class AdminController extends BaseAdminController {
 	}
 
 
-	public function session() {
+	public function promotion() {
 
 		$data = Promotion::getList('SELECT * FROM session ORDER BY date_start ASC');
 
 		$table = new Table('data-table', 'school', $data, array('id', 'school_id', 'date_start', 'date_end'), ROOT_HTTP.'admin/session/edit', ROOT_HTTP.'admin/session/delete');
 
 		$vars = array(
-			'name' => 'Sessions',
+			'name' => 'Promotions',
 			'table' => $table->render()
 		);
 
@@ -108,7 +108,7 @@ class AdminController extends BaseAdminController {
 
 
 	public function student() {
-		return $this->base_list('student', array('id', 'firstname', 'email'));
+		return $this->base_list_sql('student', array('firstname', 'email'), 'SELECT * FROM student WHERE session_id = 10');
 	}
 
 	public function student_action() {

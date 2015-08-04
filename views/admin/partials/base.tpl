@@ -1,6 +1,5 @@
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">{$title}</h1>
 
                         {if !empty($isPost) && !empty($success)}
 
@@ -10,8 +9,6 @@
 
                         {else}
 
-                            <a href="{$HTTP_ROOT}admin/{$entity_name}/create" class="btn btn-primary">{t}Add{/t} {$entity_name}</a>
-                            <hr>
 
                             {if isset($table)}
 

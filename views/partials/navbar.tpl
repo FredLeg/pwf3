@@ -7,14 +7,13 @@
 				<h1 class="logowf3"><img src="{$IMG_ROOT}template_WB3_header.png" alt="WEBFORCE 3" width="70%"></h1>
 				</a>
 
-				<!--{foreach from=$pages item=page}
+				{*foreach from=$pages item=page}
 				<a class="blog-nav-item {if $page.url == $current_page || $page.url == $target || $page.url == "$target/$action"}active{/if}" href="{$HTTP_ROOT}{$page.url}">{$page.name}</a>
-				{/foreach} -->
+				{/foreach*}
 			</nav>
 			<nav class="nav navbar-nav navbar-right blog-nav">
 
 				{if User::isLogged()}
-<<<<<<< HEAD
 
 					<a href="{$HTTP_ROOT}admin">
 						<span class="se-logger" id="se-delogger">Admin</span>
