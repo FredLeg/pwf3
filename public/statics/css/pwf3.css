@@ -38,6 +38,7 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
 
 .blog-content {
     margin-bottom: 80px;
+    background-color: #F8F8FF;
 }
 
 
@@ -45,6 +46,7 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
   line-height: 50px;
   color: #fff;
   padding: 8px;
+  margin-right: 10px;
 }
 .logowf3 {
   line-height: 50px;
@@ -74,6 +76,12 @@ padding-top: 0px; /* necessary with header > navbar-fixed-top */
 }
 
 #date {
+    margin-left: 15px;
+    padding-right: 10px;
+
+}
+
+.nom {
     margin-left: 15px;
 }
 
@@ -207,7 +215,7 @@ h1 {
 }
 
 .presence {
-  clear: both;
+    clear: both;
 }
 
 .presence .checkbox-container {
@@ -229,7 +237,7 @@ h1 {
 */
 
 .blog-footer {
-    padding: 8px 0;
+    padding: 15px 0;
     text-align: center;
     background-color: #428bca;
     border-top: 3px solid #e5e5e5;
@@ -257,4 +265,5 @@ color: #fff;
 .presence-student {
     float: left;
     margin: 20px;
+
 }
