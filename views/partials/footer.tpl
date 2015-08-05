@@ -12,6 +12,9 @@
                 <p>
                   <a href="http://www.webforce3.fr" title="Mentions légales">Web Force 3</a>
                 </p>
+                <div id="date">Le {$smarty.now|date_format:"d/m/Y"}
+            <i class="glyphicon glyphicon-time"="true"></i>
+          </div>
             </div>
           </div>
         </div>
