@@ -68,4 +68,9 @@ $routes = array(
 		'target' => 'admin',
 		'action' => 'presence'
 	),
+
+	'error/([0-9-]+)' => array(
+		'target' => 'error',
+		'action' => 'index'
+	),
 );

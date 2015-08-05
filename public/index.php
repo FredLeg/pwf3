@@ -19,17 +19,10 @@ try {
 
 	$vars = array(
 		'title' => 'Erreur',
-		'description' => 'E',
+		'description' => 'Erreur',
 	);
 
-	if ($e instanceOf AutoloadException || $e instanceOf ViewException) {
-        $response->render('500');
-    }
-
-	if ($e instanceOf ActionControllerException) {
-		$response->render('404');
-	}
-
+//
 	$class_exception = get_class($e);
 	$msg_exception = $class_exception.' : '.$e->getMessage();
 
@@ -37,5 +30,15 @@ try {
 
 	if (CORE_DEBUG) {
 		echo '<pre>'.$msg_exception.'</pre>';
+		exit();//
     }
+//
+	if ($e instanceOf AutoloadException || $e instanceOf ActionControllerException) {
+        $response->redirect(ROOT_HTTP.'error/404');
+	}
+
+	if ($e instanceOf Exception || $e instanceOf ViewException) {
+        $response->redirect(ROOT_HTTP.'error/500');
+    }
+
 }

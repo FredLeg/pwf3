@@ -48,7 +48,7 @@ abstract class Controller {
 		$router->dispatch($this);
 
 		$this->route = $this->target.'/'.$this->action.'/'.implode('/', $this->params);
-		$this->uri = ROOT_HTTP.$this->target.'/'.$this->action.'/';
+		$this->uri = $this->target.'/'.$this->action.'/';
 
 		if (empty($lang)) {
 			$lang = Lang::getDefaultLang();
@@ -64,7 +64,7 @@ abstract class Controller {
 			$this->get = Utils::stripslashes($this->get);
 		}
 
-		$this->session = !SESSION_DISABLED ? Session::getInstance(SESSION_DEFAULT_NAME) : null;
+		$this->session = !SESSION_DISABLED ? Session::getInstance(SESSION_DEFAULT_NAME) : null;;
 	}
 
 	public function getParam($param, $default = null) {

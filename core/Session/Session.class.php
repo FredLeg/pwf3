@@ -1,4 +1,5 @@
 <?php
+
 class SessionException extends CustomException {}
 
 class Session {

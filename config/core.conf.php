@@ -62,7 +62,7 @@ define('TPL_PATH', ROOT_PATH.'views/');
 define('TPL_CACHE_PATH', ROOT_PATH.'cache/views/');
 define('TPL_DEBUGGING', false);
 define('TPL_CACHING', false);
-define('TPL_FORCE_COMPILE', false);
+define('TPL_FORCE_COMPILE', true);
 
 // REFERER
 define('REFERER', !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');

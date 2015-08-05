@@ -203,13 +203,18 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Profil</a>
-                        </li>
-                        {* <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li> *}
+
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Profil</a></li>
+                        {* <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li> *}
                         <li class="divider"></li>
-                        <li><a href="{$HTTP_ROOT}logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        <li><a href="{$HTTP_ROOT}logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                        <li class="divider"></li>
+                        {if $user->isRole('dev')}
+                        {foreach $user->roles as $role}
+                            <li><a href="#"><i class="fa fa-check fa-fw"></i> {$role}</a></li>
+                        {/foreach}
+                        {/if}
+
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>

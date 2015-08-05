@@ -6,6 +6,7 @@
 				<a href="{$HTTP_ROOT}">
 				<h1 class="logowf3"><img src="{$IMG_ROOT}template_WB3_header.png" alt="WEBFORCE 3" width="70%"></h1>
 				</a>
+
 			</nav>
 			<nav class="nav navbar-nav navbar-right blog-nav">
 

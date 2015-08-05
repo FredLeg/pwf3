@@ -33,9 +33,12 @@ abstract class BaseController extends Controller {
 
 		$vars['pages'] = self::$pages;
 
+		$this->user = new User();
 		if (User::isLogged()) {
-			$vars['user'] = User::get($this->session->user_id);
+			$this->user = User::get($this->session->user_id);
 		}
+
+		$vars['user'] = $this->user;
 
 		$archives_dates = array();
 		for($i = 0; $i < 12; $i++) {

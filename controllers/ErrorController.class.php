@@ -10,12 +10,14 @@ class ErrorController extends BaseController {
 
 	public function index() {
 
+		$error = $this->getParam(0, 500);
+
 		$vars = array(
 			'title' => 'Error',
 			'description' => 'Error',
 		);
 
-		$this->render('404', $vars);
+		$this->render($error, $vars);
 	}
 
 }

@@ -10,12 +10,16 @@ class PresenceController extends BaseController {
 
 		$day = $this->getParam(0, date('Y-m-d'));
 
+
 		$session_id = 10;
 		$students = Student::getList( 'SELECT * FROM student WHERE session_id='.$session_id );
+
+
 
 		foreach($students as $student) {
 			$student->setPresence($day);
 		}
+
 
 		$vars = array(
 			'title' =>'Feuille de présence WebForce 3',

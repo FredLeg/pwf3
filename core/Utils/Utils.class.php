@@ -65,7 +65,7 @@ class Utils {
 		return preg_replace("/#(\\S+)/", '<a href="http://twitter.com/search?q=$1" target="_blank">#$1</a>', $str);
 	}
 
-	public static function redirectJs($page, $delay = 2) {
+	public static function redirectJs($page, $delay = 1) {
 		return '<script>setTimeout(function() { window.location.href = "'.$page.'"; }, '.($delay * 1000).');</script>';
 	}
 
@@ -78,24 +78,24 @@ class Utils {
 		return strtotime(getRandomDate());
 	}
 
-	public static function getRandomDate($range_years = array()) {
+	public static function getRandomDate($range_years = array(), $max_now = false) {
 
 		$random_year = sprintf('%1$04d', $range_years ? rand($range_years[0], $range_years[1]) : rand(1970, date('Y')));
-		$random_month = sprintf('%1$02d', rand(1, 12));
-		$random_day = sprintf('%1$02d', rand(0, cal_days_in_month(CAL_GREGORIAN, $random_month, $random_year)));
-		$random_hour = sprintf('%1$02d', rand(0, 23));
-		$random_minute = sprintf('%1$02d', rand(0, 59));
-		$random_second = sprintf('%1$02d', rand(0, 59));
+		$random_month = sprintf('%1$02d', rand(1, ($max_now && $random_year == date('Y') ? date('m') : 12)));
+		$random_day = sprintf('%1$02d', rand(1, ($max_now && $random_month == date('m') ? date('d') : cal_days_in_month(CAL_GREGORIAN, $random_month, $random_year))));
+		$random_hour = sprintf('%1$02d', rand(0, ($max_now && $random_day == date('d') ? date('H') : 23)));
+		$random_minute = sprintf('%1$02d', rand(0, ($max_now && $random_hour == date('H') ? date('i') : 59)));
+		$random_second = sprintf('%1$02d', rand(0, ($max_now && $random_minute == date('i') ? date('s') : 59)));
 
 		$random_date = $random_year.'-'.$random_month.'-'.$random_day.' '.$random_hour.':'.$random_minute.':'.$random_second;
 
 		return $random_date;
 	}
 
-	public static function isValidTimeStamp($timestamp)	{
-		return ((string) (int) $timestamp === $timestamp)
-		&& ($timestamp <= PHP_INT_MAX)
-		&& ($timestamp >= ~PHP_INT_MAX);
+	public static function formatTime($time, $format = 'i \m\i\n s \s\e\c') {
+		list($sec, $usec) = explode('.', $time);
+		$usec = str_replace('0.', '.', $usec);
+		return date($format, $sec).' '.substr($usec, 0, 3).' ms';
 	}
 
 }
