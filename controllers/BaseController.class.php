@@ -28,7 +28,7 @@ abstract class BaseController extends Controller {
 			'website_description' => 'Feuille de présence pour Webforce3',
 			'author' => 'Eric Madjarian, Fred Legembre, Denis Nerborac',
 			'title' => 'Webforce 3',
-			'description' => 'Feuille de présence pour Webforce3'
+			'description' => 'Feuille de présence pour Webforce3',
 		);
 
 		$vars['pages'] = self::$pages;
