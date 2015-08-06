@@ -116,6 +116,7 @@ if $this->route == admin/student/create/
 
 	protected function base_action($entity_name) {
 
+
 		$class = ucfirst($entity_name);
 
 		if (!class_exists($class)) {
@@ -142,6 +143,7 @@ if $this->route == admin/student/create/
 		$success = false;
 
 		$entity = new $class();
+
 		if (!empty($id)) {
 			$entity = $class::get($id);
 			if (empty($entity)) {
