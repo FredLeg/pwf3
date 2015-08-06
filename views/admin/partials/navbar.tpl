@@ -41,39 +41,16 @@
                 <li><a href="{$HTTP_ROOT}admin/user"{if 'user' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Utilisateurs</a></li>
                 {/if}
 
-<<<<<<< HEAD
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dir') or $user->isRole('prof') or $user->isRole('dev')}
+                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dir') or $user->isRole('prof')}
                 <li><a href="{$HTTP_ROOT}admin/promotion"{if 'promotion' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Promotions</a></li>
-=======
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dev')}
-                <li><a href="{$HTTP_ROOT}admin/promotion"{if 'promotion' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Promotions</a></li>
->>>>>>> e519456124c5580988fe577fd12d47abadf9ebf9
                 {/if}
 
                 <li><a href="{$HTTP_ROOT}admin/presence"{if 'admin/presence' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Présences</a></li>
 
-
-<<<<<<< HEAD
                 {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dir') or $user->isRole('prof') or $user->isRole('dev')}
                 <li><a href="{$HTTP_ROOT}admin/student"{if 'student' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Étudiants</a></li>
                 {/if}
 
-=======
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
-                <li><a href="{$HTTP_ROOT}admin/student"{if 'student' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Étudiants</a></li>
-                {/if}
-
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
-                <li><a href="{$HTTP_ROOT}admin/presences"{if 'presences' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Présences A supprimer</a></li>
-                {/if}
->>>>>>> e519456124c5580988fe577fd12d47abadf9ebf9
-            {*
-                {foreach $pages as $page_url => $page_params}
-                {if is_array($page_params)}
-                <li><a href="{$HTTP_ROOT}{$page_url}"{if $page_url == $current_page} class="active"{/if}><i class="fa {$page_params[1]} fa-fw"></i> {$page_params[0]}</a></li>
-                {/if}
-                {/foreach}
-            *}
                 {if $user->isRole('dev')}
                 <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers<span class="fa arrow"></span></a>
