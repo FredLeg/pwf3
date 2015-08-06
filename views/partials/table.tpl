@@ -16,7 +16,7 @@
 			{/foreach}
 			<td class="center">
 				{if $table->entity == 'student'}
-					<a href="presences/{$data->id}"><i class="fa fa-bar-chart fa-fw"></i></a>
+					<a href="presence/{$data->id}"><i class="fa fa-bar-chart fa-fw"></i></a>
 				{/if}
 				{if !empty($table->edit_url)}<a href="{$table->edit_url}/{$data->id}"><i class="fa fa-pencil fa-fw"></i></a>{/if}
 				{if !empty($table->delete_url)}<a href="{$table->delete_url}/{$data->id}" onclick="if(confirm('{t}Are you sure you want to delete this{/t} {$table->entity} ({$data->id}) ?')) { return true } return false"><i class="fa fa-trash fa-fw"></i></a>{/if}
