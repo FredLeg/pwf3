@@ -108,12 +108,82 @@ class AdminController extends BaseAdminController {
 
 
 	public function student() {
-		return $this->base_list_sql('student', array('firstname', 'email'), 'SELECT * FROM student WHERE session_id = 10');
-//		return $this->base_list_sql('student', array('fullname', 'email'), 'SELECT *, CONCAT(firstname," ",lastname) as fullname FROM student WHERE session_id = 10');
+
+		function myEmpty($value){
+			return (strlen(''.$value)==0);
+		}
+//if ($this->user->firstname == 'fred'){
+//echo 'user->school_id &#9830; '.$this->user->school_id.'<br>';
+//echo (int)empty($this->request->get('school')).'<br>';
+//echo $this->request->get('school', 0).'<br>';
+//echo 'empty(user->school_id) &#9830; '.(int)myEmpty($this->user->school_id).'<br>';
+//}
+		$school_id = ( !myEmpty($this->user->school_id) ? $this->user->school_id : 1 );
+
+//if ($this->user->firstname == 'fred') echo '$school_id &#9830; '.$school_id.'<br>';
+
+		$school_id = ( !empty($this->request->get('school')) ? $this->request->get('school') : $school_id );
+
+//if ($this->user->firstname == 'fred') echo '$school_id &#9830; '.$school_id.'<br>';
+
+		$schools = '';
+		if ($this->user->isRole('admin') or $this->user->isRole('pdt')) {
+			$schools = School::getList('SELECT * FROM school ORDER BY name DESC');
+		}
+		$where = '';
+		$where = 'AND school_id='.$school_id;
+		if ($this->user->isRole('admin'))  $where = 'AND school_id='.$school_id;
+		if ($this->user->isRole('pdt'))    $where = 'AND school_id='.$school_id;
+		if ($this->user->isRole('dir')) {
+			$school_id = $this->user->school_id;
+			$where = 'AND school_id='.$school_id;
+		}
+		if ($this->user->isRole('prof'))   $where = 'AND school_id='.$school_id;
+		$promos = Promotion::getList('SELECT * FROM session WHERE true '.$where.' ORDER BY date_start DESC');
+		function currentPromo_id( $promos ){
+			$now =  date('Y-m-d');
+			foreach ($promos as $index => $promo) {
+				if ( $now >= $promo->date_start and $now <= $promo->date_end ) return $promo->id;
+			}
+			if (!empty($promo[0])) {
+				return $promo[0]->id;
+			} else {
+				return '0';
+			}
+		}
+		$promo_id = $this->request->get('promo', 0);
+		if ($promo_id==0) $promo_id = currentPromo_id( $promos );
+
+		$students = Student::getList('SELECT s.*, CONCAT(s.firstname," ",s.lastname)as fullname FROM student as s, session as p WHERE p.id=s.session_id AND p.id='.$promo_id);
+		$edit_url   = ( $this->user->canDo('student_update') ? ROOT_HTTP.'admin/student/update' : '' );
+		$delete_url = ( $this->user->canDo('student_delete') ? ROOT_HTTP.'admin/student/delete' : '' );
+		$tableStudents = new Table('data-table', 'student', $students, ['id', 'fullname', 'email'], $edit_url, $delete_url);
+
+//if ($this->user->firstname == 'fred') echo '$school_id &#9830; '.$school_id.'<br>';
+
+		$vars = [
+			'canAddStudent' => $this->user->canDo('student_create'),
+			'schools' => $schools,
+			'school_id' => $school_id,
+			'promos' => $promos,
+			'promo_id' => $promo_id,
+			'table' => $tableStudents->render(), // pour base.tpl
+		];
+		$this->render('admin/student', $vars);
+
 	}
+
 
 	public function student_action() {
 		return $this->base_action('student');
+	}
+
+	public function stajax() {
+		echo "hello ajax";
+	}
+
+	public function excel() {
+		echo '<h1>Excel</h1>';
 	}
 
 

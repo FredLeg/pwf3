@@ -26,6 +26,9 @@ class Student extends Model {
 	public function getFirstname() {
 		return $this->firstname;
 	}
+	public function getFullname() {
+		return $this->firstname.' '.$this->lastname; // cannot be set
+	}
 	public function getLastname() {
 		return $this->lastname;
 	}
@@ -115,15 +118,18 @@ class Student extends Model {
 		$sessions = array();
 		foreach($promotions as $key => $session) {
 
-			$session_date_label = ucfirst(Lang::_(strtolower(date('F', strtotime($session->date_start))))).' '.date('Y', strtotime($session->date_start)).' - '.ucfirst(Lang::_(strtolower(date('F', strtotime($session->date_end))))).' '.date('Y', strtotime($session->date_end));
+			//$session_date_label = ucfirst(Lang::_(strtolower(date('F', strtotime($session->date_start))))).' '.date('Y', strtotime($session->date_start)).' - '.ucfirst(Lang::_(strtolower(date('F', strtotime($session->date_end))))).' '.date('Y', strtotime($session->date_end));
+			$session_date_label = $session->label;
 
 			$sessions[] = array('id' => $session->id, 'name' => $session_date_label);
 		}
 
 		$genders = array(array('id' => 1, 'name' => 'Homme'), array('id' => 0, 'name' => 'Femme'));
 
+		$session_id = $request->get('promo', $this->_getfieldvalue('session_id', $type, $request));
+
 		$form = new Form('form-post-'.$type, 'form-post-'.$type, $action, 'POST', 'form-horizontal', $errors, $isPost);
-		$form->addField('session_id', Lang::_('Session'), 'select', $this->_getfieldvalue('session_id', $type, $request), true, '', @$errors['firstname'], null, null, $sessions);
+		$form->addField('session_id', Lang::_('Session'), 'select', $session_id, true, '', @$errors['session_id'], null, null, $sessions, ($type == 'update' ? true : false));
 		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
 		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
 		$form->addField('gender', Lang::_('Gender'), 'select', $this->_getfieldvalue('gender', $type, $request), true, '', @$errors['gender'], null, null, $genders);

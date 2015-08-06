@@ -41,20 +41,17 @@
                 <li><a href="{$HTTP_ROOT}admin/user"{if 'user' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Utilisateurs</a></li>
                 {/if}
 
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dev')}
+                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dir') or $user->isRole('prof') or $user->isRole('dev')}
                 <li><a href="{$HTTP_ROOT}admin/promotion"{if 'promotion' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Promotions</a></li>
                 {/if}
 
-                <li><a href="{$HTTP_ROOT}admin/presence"{if 'admin/presence' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Présences - En cours Eric</a></li>
+                <li><a href="{$HTTP_ROOT}admin/presence"{if 'admin/presence' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i>Présences</a></li>
 
 
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
+                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('dir') or $user->isRole('prof') or $user->isRole('dev')}
                 <li><a href="{$HTTP_ROOT}admin/student"{if 'student' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Étudiants</a></li>
                 {/if}
 
-                {if $user->isRole('admin') or $user->isRole('pdt') or $user->isRole('prof') or $user->isRole('dev')}
-                <li><a href="{$HTTP_ROOT}admin/presences"{if 'presences' == $current_page} class="active"{/if}><i class="fa fa-table fa-fw"></i> Présences</a></li>
-                {/if}
             {*
                 {foreach $pages as $page_url => $page_params}
                 {if is_array($page_params)}
@@ -64,13 +61,21 @@
             *}
                 {if $user->isRole('dev')}
                 <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers A supprimer<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{$HTTP_ROOT}tests/crop">crop image</a></li>
-                        <li><a href="{$HTTP_ROOT}load/excel">load excel</a></li>
+                        <li><a href="{$HTTP_ROOT}tests/fred/crop">crop image</a></li>
+                        <li><a href="{$HTTP_ROOT}tests/fred/excel">load excel</a></li>
                     </ul>
                 </li>
                 {/if}
+
+                <li>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Liens<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{$HTTP_ROOT}trombino">Trombinoscope</a></li>
+                        <li><a href="{$HTTP_ROOT}presence">Précences</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

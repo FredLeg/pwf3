@@ -53,7 +53,7 @@
                 </li>
  *}
 
-{*              <!-- /.dropdown -->
+              <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -132,9 +132,9 @@
                     </ul>
                     <!-- /.dropdown-tasks -->
                 </li>
-*}
 
- {*
+
+{*
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -208,10 +208,11 @@
                         {* <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li> *}
                         <li class="divider"></li>
                         <li><a href="{$HTTP_ROOT}logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-                        <li class="divider"></li>
                         {if $user->isRole('dev')}
-                        {foreach $user->roles as $role}
-                            <li><a href="#"><i class="fa fa-check fa-fw"></i> {$role}</a></li>
+                        <li class="divider"></li>
+                        {foreach $user->readRoles as $role => $user_ids}
+                            <li><a href="#">
+                            {if $user->isRole($role)}<i class="fa fa-check fa-fw"></i>{else}<i class="fa fa-square-o fa-fw"></i>{/if}&nbsp;{$role}</a></li>
                         {/foreach}
                         {/if}
 

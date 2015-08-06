@@ -23,6 +23,7 @@ abstract class BaseController extends Controller {
 			'current_page' => $this->route,
 			'target' => $this->target,
 			'action' => $this->action,
+			'request' => $this->request,
 			'lang' => $this->lang->getUserLang(),
 			'website_title' => 'Webforce 3',
 			'website_description' => 'Feuille de présence pour Webforce3',
@@ -53,27 +54,4 @@ abstract class BaseController extends Controller {
 
 		$this->response->addVars($vars);
 	}
-
-	public function isAllowedAccess($page, $level) {
-
-		if (empty($level) || $level===0) {
-			return false;
-		}
-
-		if (!isset(static::$pages[$page])) {
-			return false;
-		}
-
-		$page_level = static::$pages[$page];
-		if (is_array(static::$pages[$page])) {
-			$page_level = $page_level[2];
-		}
-
-		if ($level < $page_level) {
-			return false;
-		}
-
-		return true;
-	}
-
 }

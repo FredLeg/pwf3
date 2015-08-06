@@ -16,7 +16,7 @@ define('ROOT_PATH', str_replace(DIRECTORY_SEPARATOR,'/',dirname(__DIR__)).'/');
 //define('ROOT_HTTP', 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].'/'.ROOT_DIR.'/');
 define('ROOT_HTTP','http'.(!empty($_SERVER['HTTPS']) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].ROOT_GAP.'/');
 
-if ( $_SERVER['HTTP_HOST'] != 'localhost' ) {
+if ( false and $_SERVER['HTTP_HOST'] != 'localhost' ) {
 	echo 'HTTP_HOST &#9830; '.$_SERVER['HTTP_HOST'].'<br>';
 	echo '__DIR__ &#9830; '.__DIR__.'<br>';
 	echo 'CONFIG_DIR &#9830; '.CONFIG_DIR.'<br>';
@@ -73,8 +73,8 @@ define('SESSION_DEFAULT_NAME', 'framework_session');
 
 // DB CONFIG
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
-	define('DB_HOST', '192.168.1.19'); //localhost   192.168.1.19  //ERIC 192.168.1.36
-	define('DB_USER', 'pwf3_user');      //root      pwf3_user
+	define('DB_HOST', 'localhost'); //localhost   192.168.1.19  //ERIC 192.168.1.36
+	define('DB_USER', 'root');      //root      pwf3_user
 	define('DB_PASS', '');
 } else {
 	define('DB_HOST', 'localhost');

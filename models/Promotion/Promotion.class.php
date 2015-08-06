@@ -20,6 +20,13 @@ class Promotion extends Model {
 	public function getDateEnd() {
 		return $this->date_end;
 	}
+	public function getLabel() {
+		$str_year        = date('Y', strtotime($this->date_start));
+		$str_month_start = ucfirst(Lang::_(strtolower(date('F', strtotime($this->date_start)))));
+		$str_month_end   = ucfirst(Lang::_(strtolower(date('F', strtotime($this->date_end)))));
+		return $str_year.' '.$str_month_start.' - '.$str_month_end;
+	}
+
 
 	/* Setters */
 	public function setId($id) {
