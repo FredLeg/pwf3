@@ -92,6 +92,12 @@ class Utils {
 		return $random_date;
 	}
 
+	public static function isValidTimeStamp($timestamp) {
+		return ((string) (int) $timestamp === $timestamp)
+		&& ($timestamp <= PHP_INT_MAX)
+		&& ($timestamp >= ~PHP_INT_MAX);
+	}
+
 	public static function formatTime($time, $format = 'i \m\i\n s \s\e\c') {
 		list($sec, $usec) = explode('.', $time);
 		$usec = str_replace('0.', '.', $usec);

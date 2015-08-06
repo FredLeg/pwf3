@@ -64,7 +64,7 @@ $routes = array(
 		'action' => 'logout'
 	),*/
 
-	'admin/presence' => array(
+	'admin/presence/?([0-9]*)' => array(
 		'target' => 'admin',
 		'action' => 'presence'
 	),

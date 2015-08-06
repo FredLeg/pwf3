@@ -186,8 +186,29 @@ class AdminController extends BaseAdminController {
 		echo '<h1>Excel</h1>';
 	}
 
-	public function studentcrop() {
-		return $this->response->render('crop');
+	public function crop() {
+
+		$isPost = $this->request->isPost();
+
+		if ($isPost) {
+
+			$crop = new Crop(
+			  $this->request->post('avatar_src', null),
+			  $this->request->post('avatar_data', null),
+			  !empty($this->request->files['avatar_file']) ? $this->request->files['avatar_file'] : null
+			);
+
+			$response = array(
+			  'state'  => 200,
+			  'message' => $crop->getMsg(),
+			  'result' => $crop->getResult(true)
+			);
+
+			echo json_encode($response);
+			return true;
+		}
+
+		return $this->response->render('admin/partials/crop');
 	}
 
 
@@ -211,14 +232,31 @@ class AdminController extends BaseAdminController {
 
 	public function presence() {
 
+		$id = $this->getParam(0, 0);
+
 		$presences = array(
 			array('Type', 'Count'),
-			array('R1', 1),
+			array('R1', 0),
 			array('R2', 0),
-			array('D1', 3),
-			array('D2', 2),
+			array('D1', 0),
+			array('D2', 0),
 			array('Absent', 0),
 		);
+
+		if (!empty($id)) {
+			$student_presence = Db::selectOne('SELECT SUM(r1) as R1, SUM(r2) as R2, SUM(d1) as D1, SUM(d2) as D2, SUM(absent) as Absent FROM presence GROUP BY student_id HAVING student_id = :student_id', array('student_id' => $id));
+
+			if (!empty($student_presence)) {
+				$presences = array(
+					array('Type', 'Count'),
+					array('R1', !empty($student_presence['R1']) ? (int) $student_presence['R1'] : 0),
+					array('R2', !empty($student_presence['R2']) ? (int) $student_presence['R2'] : 0),
+					array('D1', !empty($student_presence['D1']) ? (int) $student_presence['D1'] : 0),
+					array('D2', !empty($student_presence['D2']) ? (int) $student_presence['D2'] : 0),
+					array('Absent', !empty($student_presence['Absent']) ? (int) $student_presence['Absent'] : 0),
+				);
+			}
+		}
 
 		$this->response->addVar('presences_data', json_encode($presences));
 
