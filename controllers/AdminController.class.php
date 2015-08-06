@@ -186,6 +186,10 @@ class AdminController extends BaseAdminController {
 		echo '<h1>Excel</h1>';
 	}
 
+	public function studentcrop() {
+		return $this->response->render('crop');
+	}
+
 
 	/* TODO: remove */
 
