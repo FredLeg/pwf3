@@ -56,7 +56,7 @@
  </script>
 
 <div id="corechart" class="chart">
-  <script>
+  <script type="text/javascript">
   {literal}
 
   google.load("visualization", "1", {packages:["corechart"]});
@@ -73,7 +73,8 @@
   var options = {
     title: 'Tableau récapitulatif par mois',
     hAxis: {title: 'Mois',  titleTextStyle: {color: '#333'}},
-    vAxis: {minValue: 0}
+    vAxis: {minValue: 0,
+      ticks: [0, 1, 2, 3, 4, 5]}
   };
 
   var chart = new google.visualization.AreaChart(document.getElementById('corechart'));

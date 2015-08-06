@@ -351,6 +351,6 @@ table.dataTable thead .sorting:after {
 }
 
 .chart {
-  width: 100%;
-  height: 600px;
+  width: 800px;
+  height: 900px;
 }
