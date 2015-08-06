@@ -12,8 +12,9 @@ class Field {
 	public $size;
 	public $maxlength;
 	public $multi_values;
+	public $disabled;
 
-	public function __construct($_name=null, $_label=null, $_type='text', $_value=null, $_required=false, $_class='', $_error = false, $_size=null, $_maxlength=null, $_multi_values=array()) {
+	public function __construct($_name=null, $_label=null, $_type='text', $_value=null, $_required=false, $_class='', $_error = false, $_size=null, $_maxlength=null, $_multi_values=array(), $_disabled = false) {
 		$this->name 		= $_name;
 		$this->label 		= $_label;
 		$this->type 		= $_type;
@@ -24,6 +25,7 @@ class Field {
 		$this->size 		= $_size;
 		$this->maxlength 	= $_maxlength;
 		$this->multi_values = $_multi_values;
+		$this->disabled     = $_disabled;
 	}
 
 }

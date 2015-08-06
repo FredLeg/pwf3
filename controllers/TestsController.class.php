@@ -20,7 +20,13 @@ class TestsController extends BaseController {
 		);
 		if ($param=='crop') {
 			$this->render('tests/tests_fred_crop', $vars);
+		} else if ($param=='excel') {
+
+			require_once ROOT_PATH.'public/statics/PHPExcel/Examples/01simple.php';
+			//$this->render('tests/tests_fred_excel', $vars);
+
 		} else {
+
 			$this->render('tests/tests_fred', $vars);
 		}
 	}

@@ -5,13 +5,13 @@ try {
 
 	header('Content-type: text/html; charset='.Lang::$encoding);
 
-	//$profiler = new Profiler();
+	$profiler = new Profiler();
 
 	$controller = new ActionController();
 	$controller->handle();
 
-	//$profiler->stop();
-	//echo $profiler->getSummary();
+	$profiler->stop();
+	echo $profiler->getSummary();
 
 } catch (Exception $e) {
 

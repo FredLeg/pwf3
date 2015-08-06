@@ -4,30 +4,27 @@ class User extends Model {
 	protected $roles =  [
 		'admin'  => [2, 4, 10, 11],
 		'pdt'    => [1],
-		'dir'    => [7, 3, 9],
-		'prof'   => [2, 4, 5, 6, 8],
+		'dir'    => [3, 9],
+		'prof'   => [7, 2, 4, 5, 6, 8],
 		'dev'    => [7, 4, 10, 11],
 	];
 
 	protected $roles_func =  [
-		'student_create'  => ['roles' => ['admin','dir'], 'desc'  => "ajouter un étudiant"],
-		'student_update'  => ['roles' => ['admin','dir'], 'desc'  => "modifier un étudiant" ],
+		'student_create'  => ['admin','dir'],  // ajouter un étudiant
+		'student_update'  => ['admin','dir'],  // modifier un étudiant
+		'student_delete'  => ['admin','dir'],  // supprimer un étudiant
 	];
 
 	public function canDo($func) {
-
-		if (!isset($roles_func[$func])) {
+		if (!isset($this->roles_func[$func])) {
 			return false;
 		}
-
-		$granted_roles = $roles_func[$func]['roles'];
-
-		foreach($this->getRoles() as $role) {
-			if (in_array($role, $granted_roles)) {
+		$roles = $this->getRoles();
+		foreach( $roles as $role) {
+			if (in_array($role, $this->roles_func[$func])) {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -67,6 +64,9 @@ class User extends Model {
 	}
 	public function isRole( $role_name ) {
 		return in_array($this->id, $this->roles[$role_name]);
+	}
+	public function getReadRoles() {
+		return $this->roles;
 	}
 
 	/* Getters ------------------------------------------------------------- */

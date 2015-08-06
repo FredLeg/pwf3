@@ -14,7 +14,7 @@
 						$fields[key]->type == 'password'}
 					<label for="{$fields[key]->name}" class="col-sm-2 control-label">{$fields[key]->label}</label>
 					<div class="col-sm-10">
-						<input type="{$fields[key]->type}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}" id="{$fields[key]->name}" name="{$fields[key]->name}" {if isset($fields[key]->maxlength) && $fields[key]->maxlength > 0} maxlength="{$fields[key]->maxlength}"{/if} placeholder="{$fields[key]->label}" value="{$fields[key]->value}">
+						<input type="{$fields[key]->type}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}" id="{$fields[key]->name}" name="{$fields[key]->name}" {if isset($fields[key]->maxlength) && $fields[key]->maxlength > 0} maxlength="{$fields[key]->maxlength}"{/if} placeholder="{$fields[key]->label}" value="{$fields[key]->value}"{if $fields[key]->disabled} disabled{/if}>
 					</div>
 					{/if}
 
@@ -22,7 +22,7 @@
 					<div class="col-sm-offset-2 col-sm-10">
 						<div class="checkbox">
 							<label>
-								<input type="{$fields[key]->type}" class="{if $fields[key]->required} required{/if}{$fields[key]->class}" id="{$fields[key]->name}" name="{$fields[key]->name}" {if isset($fields[key]->maxlength) && $fields[key]->maxlength > 0} maxlength="{$fields[key]->maxlength}"{/if} value="1"{if $fields[key]->value == '1'} checked="checked"{/if}> {$fields[key]->label}
+								<input type="{$fields[key]->type}" class="{if $fields[key]->required} required{/if}{$fields[key]->class}" id="{$fields[key]->name}" name="{$fields[key]->name}" {if isset($fields[key]->maxlength) && $fields[key]->maxlength > 0} maxlength="{$fields[key]->maxlength}"{/if} value="1"{if $fields[key]->value == '1'} checked="checked"{/if}{if $fields[key]->disabled} disabled{/if}> {$fields[key]->label}
 							</label>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 					{if $fields[key]->type == 'select'}
 					<label for="{$fields[key]->name}" class="col-sm-2 control-label">{$fields[key]->label}</label>
 					<div class="col-sm-10">
-						<select id="{$fields[key]->name}" name="{$fields[key]->name}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}">
+						<select id="{$fields[key]->name}" name="{$fields[key]->name}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}"{if $fields[key]->disabled} disabled{/if}>
 							<option value="">...</option>
 							{section name=index loop=$fields[key]->multi_values}
 							<option value="{$fields[key]->multi_values[index]['id']}"{if $fields[key]->value == $fields[key]->multi_values[index]['id']} selected="selected"{/if}>{$fields[key]->multi_values[index]['name']}</option>
@@ -43,14 +43,14 @@
 					{if $fields[key]->type == 'textarea'}
 					<label for="{$fields[key]->name}" class="col-sm-2 control-label">{$fields[key]->label}</label>
 					<div class="col-sm-10">
-						<textarea id="{$fields[key]->name}" name="{$fields[key]->name}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}" placeholder="{$fields[key]->label}" col="10" rows="3">{$fields[key]->value}</textarea>
+						<textarea id="{$fields[key]->name}" name="{$fields[key]->name}" class="form-control{if $fields[key]->required} required{/if}{$fields[key]->class}" placeholder="{$fields[key]->label}" col="10" rows="3"{if $fields[key]->disabled} disabled{/if}>{$fields[key]->value}</textarea>
 					</div>
 					{/if}
 
 					{if $fields[key]->type == 'file'}
 					<label for="{$fields[key]->name}" class="col-sm-2 control-label">{$fields[key]->label}</label>
 					<div class="col-sm-10">
-				    	<input type="file" id="{$fields[key]->name}" name="{$fields[key]->name}" class="{$fields[key]->class}">
+				    	<input type="file" id="{$fields[key]->name}" name="{$fields[key]->name}" class="{$fields[key]->class}"{if $fields[key]->disabled} disabled{/if}>
 				    </div>
 					{/if}
 
