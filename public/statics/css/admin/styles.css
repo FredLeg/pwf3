@@ -349,3 +349,8 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.chart {
+  width: 100%;
+  height: 600px;
+}

@@ -209,11 +209,11 @@ class AdminController extends BaseAdminController {
 
 		$presences = array(
 			array('Type', 'Count'),
-			array('r1', 10),
-			array('r2', 20),
-			array('d1', 3),
-			array('d2', 0),
-			array('absent', 10),
+			array('R1', 1),
+			array('R2', 0),
+			array('D1', 3),
+			array('D2', 2),
+			array('Absent', 0),
 		);
 
 		$this->response->addVar('presences_data', json_encode($presences));

@@ -12,10 +12,6 @@
 
 				{if User::isLogged()}
 
-					<a href="{$HTTP_ROOT}admin">
-						<span class="se-logger" id="se-delogger">Admin</span>
-					</a>
-
 					{if $current_page=='presence/index/'}
 						{assign 'page' 'trombino'}
 					{else}
@@ -25,20 +21,22 @@
 						<a href="{$HTTP_ROOT}{$page}">
 							<span class="se-logger" id="se-delogger">{ucfirst({$page})}</span>
 						</a>
+
+						<a href="{$HTTP_ROOT}admin">
+						<span class="se-logger" id="se-delogger">Admin</span>
+						</a>
 					{/if}
 
-					Bonjour {$user->firstname}
-					<div id="date">Le {$smarty.now|date_format:"d/m/Y"}
-						<i class="glyphicon glyphicon-time"="true"></i>
-					</div>
+					<div id="Bjr">Bonjour {$user->firstname},</div>
+
 					<a href="{$HTTP_ROOT}logout">
-						<span class="se-logger" id="se-delogger"> Se déconnecter</span>
+						<span class="se-logger" id="se-delogger">Se déconnecter</span>
 						<i class="glyphicon glyphicon-log-out aria-hidden"="true"></i>
 					</a>
 				{else}
 
 					<a href="{$HTTP_ROOT}login">
-						<span class="se-logger" id="se-logger"> Se connecter</span>
+						<span class="se-logger" id="se-logger">Se connecter</span>
 						<i class="glyphicon glyphicon-log-in aria-hidden"="true"></i>
 					</a>
 
