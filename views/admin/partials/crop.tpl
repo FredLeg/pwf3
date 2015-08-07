@@ -1,10 +1,12 @@
-{include file="admin/partials/header.tpl"}
+ {if !isset($picture)}
+ {assign var=picture value="{$HTTP_ROOT}public/uploads/picture.jpg"}
+ {/if}
 
   <div class="container" id="crop-avatar">
 
     <!-- Current avatar -->
     <div class="avatar-view" title="Change the avatar">
-      <img src="/pwf3/public/uploads/picture.jpg" alt="Avatar">
+      <img src="{$picture}" alt="Avatar">
     </div>
 
     <!-- Cropping modal -->
@@ -71,7 +73,3 @@
     <!-- Loading state -->
     <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
   </div>
-
-
-
-{include file="admin/partials/footer.tpl"}

@@ -133,7 +133,8 @@ class Student extends Model {
 		$form->addField('firstname', Lang::_('Firstname'), 'text', $this->_getfieldvalue('firstname', $type, $request), true, '', @$errors['firstname']);
 		$form->addField('lastname', Lang::_('Lastname'), 'text', $this->_getfieldvalue('lastname', $type, $request), true, '', @$errors['lastname']);
 		$form->addField('gender', Lang::_('Gender'), 'select', $this->_getfieldvalue('gender', $type, $request), true, '', @$errors['gender'], null, null, $genders);
-		$form->addField('photo', Lang::_('Photo'), 'file', $this->_getfieldvalue('photo', $type, $request), false, '', @$errors['photo']);
+		/*$form->addField('photo', Lang::_('Photo'), 'file', $this->_getfieldvalue('photo', $type, $request), false, '', @$errors['photo']);*/
+		$form->addField('photo', Lang::_('Photo'), 'filecrop', $this->_getfieldvalue('photo', $type, $request), false, '', @$errors['photo']);
 		$form->addField('date_birth', Lang::_('Date de naissance'), 'date', $this->_getfieldvalue('date_birth', $type, $request), true, '', @$errors['date_birth']);
 		$form->addField('num_pe', Lang::_('Numero Pole Emploi'), 'text', $this->_getfieldvalue('num_pe', $type, $request), true, '', @$errors['num_pe']);
 		$form->addField('from_city', Lang::_('From_city'), 'text', $this->_getfieldvalue('from_city', $type, $request), true, '', @$errors['from_city']);

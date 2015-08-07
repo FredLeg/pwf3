@@ -30,6 +30,8 @@
  		var options = {
  			title: 'Tableau indicatif par semaine',
       legend: 'none',
+      vAxis: {minValue: 0,
+      ticks: [0, 1, 2, 3, 4, 5]}
  		};
 
  		/*

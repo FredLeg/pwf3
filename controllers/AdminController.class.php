@@ -208,7 +208,7 @@ class AdminController extends BaseAdminController {
 			return true;
 		}
 
-		return $this->response->render('admin/partials/crop');
+		return $this->response->render('admin/crop');
 	}
 
 
