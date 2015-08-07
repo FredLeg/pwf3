@@ -15,7 +15,7 @@
 			<td>{$data->$col}</td>
 			{/foreach}
 			<td class="center">
-				{if $table->entity == 'student'}
+				{if $table->entity == 'student' || $table->entity == 'presence'}
 					<a href="presence/{$data->id}"><i class="fa fa-bar-chart fa-fw"></i></a>
 				{/if}
 				{if !empty($table->edit_url)}<a href="{$table->edit_url}/{$data->id}"><i class="fa fa-pencil fa-fw"></i></a>{/if}

@@ -11,9 +11,12 @@
     <meta name="author" content="">
 
 
-    <!--link href="{$CSS_ROOT}bootstrap.min.css" rel="stylesheet"-->
-    <link href="{$CSS_ROOT}main.css" rel="stylesheet">
+    <link href="{$CSS_ROOT}bootstrap.min.css" rel="stylesheet">
+    <!--<link href="{$CSS_ROOT}main.css" rel="stylesheet">-->
     <link href="{$CSS_ROOT}admin/metisMenu.min.css" rel="stylesheet">
+
+    <link href="{$CSS_ROOT}dist/cropper.css" rel="stylesheet">
+    <link href="{$CSS_ROOT}crop_main.css" rel="stylesheet">
 
     <link href="{$CSS_ROOT}admin/dataTables.bootstrap.css" rel="stylesheet">
     <link href="{$CSS_ROOT}admin/dataTables.responsive.css" rel="stylesheet">

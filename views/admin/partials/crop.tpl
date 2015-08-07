@@ -1,20 +1,19 @@
-
-  <link href="{$CSS_ROOT}css/bootstrap.min.css" rel="stylesheet">
-  <link href="{$CSS_ROOT}dist/cropper.css" rel="stylesheet">
-  <link href="{$CSS_ROOT}crop_main.css" rel="stylesheet">
+ {if !isset($picture)}
+ {assign var=picture value="{$HTTP_ROOT}public/uploads/picture.jpg"}
+ {/if}
 
   <div class="container" id="crop-avatar">
 
     <!-- Current avatar -->
     <div class="avatar-view" title="Change the avatar">
-      <img src="/pwf3/public/uploads/picture.jpg" alt="Avatar">
+      <img src="{$picture}" alt="Avatar">
     </div>
 
     <!-- Cropping modal -->
     <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
+          <form class="avatar-form" action="{$HTTP_ROOT}admin/crop" enctype="multipart/form-data" method="POST">
             <div class="modal-header">
               <button class="close" data-dismiss="modal" type="button">&times;</button>
               <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
@@ -74,8 +73,3 @@
     <!-- Loading state -->
     <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
   </div>
-
-  <script src="/pwf3/public/statics/js/jquery.min.js"></script>
-  <script src="/pwf3/public/statics/js/bootstrap.min.js"></script>
-  <script src="/pwf3/public/statics/css/dist/cropper.js"></script>
-  <script src="/pwf3/public/statics/js/crop_main.js"></script>

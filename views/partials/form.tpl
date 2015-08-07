@@ -59,12 +59,27 @@
 					</div>
 					{/if}
 
+					{*
 					{if $fields[key]->type == 'file'}
 					<label for="{$fields[key]->name}{$disabled_name}" class="col-sm-2 control-label">{$fields[key]->label}</label>
 					<div class="col-sm-10">
 				    	<input type="file" id="{$fields[key]->name}{$disabled_name}" name="{$fields[key]->name}{$disabled_name}" class="{$fields[key]->class}" {$disabled}>
 				    </div>
 					{/if}
+					*}
+
+					{if $fields[key]->type == 'filecrop'}
+					<label for="{$fields[key]->name}{$disabled_name}" class="col-sm-2 control-label">{$fields[key]->label}crop</label>
+					<div class="col-sm-10">
+
+							{if !empty($fields[key]->value)}
+								{include file="admin/partials/crop.tpl" picture="http://192.168.1.19/public/statics/img/trombino/10/{$fields[key]->value}"}
+							{else}
+				    	<input type="file" id="{$fields[key]->name}{$disabled_name}" name="{$fields[key]->name}{$disabled_name}" class="{$fields[key]->class}" {$disabled}>
+				    	{/if}
+				   </div>
+					{/if}
+
 
 					{if !empty($isSubmit) && !empty($fields[key]->error) && $fields[key]->error !== true}
 					<label class="col-sm-2"></label>
@@ -82,5 +97,30 @@
 					<button type="submit" class="btn btn-default">{t}Send{/t}</button>
 				</div>
 			</div>
-
+</div>
 		</form>
+
+
+<!--<script type="text/javascript">
+
+	var $image = $('#cropper-example-2 > img'),
+    cropBoxData,
+    canvasData;
+
+$('#cropper-example-2-modal').on('shown.bs.modal', function () {
+  $image.cropper({
+    autoCropArea: 0.5,
+    built: function () {
+      // Strict mode: set crop box data first
+      $image.cropper('setCropBoxData', cropBoxData);
+      $image.cropper('setCanvasData', canvasData);
+    }
+  });
+}).on('hidden.bs.modal', function () {
+  cropBoxData = $image.cropper('getCropBoxData');
+  canvasData = $image.cropper('getCanvasData');
+  $image.cropper('destroy');
+});
+</script>
+-->
+
