@@ -18,6 +18,11 @@ function autoload($class) {
 		return true;
 	}
 
+    if (strpos($class, 'PHPExcel') !== false) {
+        require_once ROOT_PATH.'core/PHPExcel/PHPExcel.php';
+        return true;
+    }
+
     $class_folder = $class;
     if (strpos($class, '_') !== false) {
         $class_folder = strtok($class, '_');

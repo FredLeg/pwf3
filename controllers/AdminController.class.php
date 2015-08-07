@@ -109,16 +109,16 @@ class AdminController extends BaseAdminController {
 
 	public function student() {
 
-		function myEmpty($value){
+		function isEmpty($value){
 			return (strlen(''.$value)==0);
 		}
 //if ($this->user->firstname == 'fred'){
 //echo 'user->school_id &#9830; '.$this->user->school_id.'<br>';
 //echo (int)empty($this->request->get('school')).'<br>';
 //echo $this->request->get('school', 0).'<br>';
-//echo 'empty(user->school_id) &#9830; '.(int)myEmpty($this->user->school_id).'<br>';
+//echo 'empty(user->school_id) &#9830; '.(int)isEmpty($this->user->school_id).'<br>';
 //}
-		$school_id = ( !myEmpty($this->user->school_id) ? $this->user->school_id : 1 );
+		$school_id = ( !isEmpty($this->user->school_id) ? $this->user->school_id : 1 );
 
 //if ($this->user->firstname == 'fred') echo '$school_id &#9830; '.$school_id.'<br>';
 
@@ -135,10 +135,11 @@ class AdminController extends BaseAdminController {
 		if ($this->user->isRole('admin'))  $where = 'AND school_id='.$school_id;
 		if ($this->user->isRole('pdt'))    $where = 'AND school_id='.$school_id;
 		if ($this->user->isRole('dir')) {
-			$school_id = $this->user->school_id;
+			//$school_id = $this->user->school_id;
 			$where = 'AND school_id='.$school_id;
 		}
 		if ($this->user->isRole('prof'))   $where = 'AND school_id='.$school_id;
+
 		$promos = Promotion::getList('SELECT * FROM session WHERE true '.$where.' ORDER BY date_start DESC');
 		function currentPromo_id( $promos ){
 			$now =  date('Y-m-d');
@@ -184,6 +185,72 @@ class AdminController extends BaseAdminController {
 
 	public function excel() {
 		echo '<h1>Excel</h1>';
+	}
+
+	public function data() {
+		// Extractaire des data dans la base
+		$datas = Data::getList('SELECT * FROM data ORDER BY date ASC');
+
+		// Extractaire des students avec le tmp_id
+		global $students;
+		$students = Student::getList('SELECT id, tmp_id FROM student ORDER BY id ASC');
+		function getRealStudentId($tmp_id){
+			global $students;
+			//echo '<pre>'.print_r($students,true).'</pre>';
+			foreach ($students as $student){
+				if ($student->tmp_id==$tmp_id) return $student->id;
+			}
+			return 0;
+		}
+		//echo getRealStudentId(11);
+		//exit;
+
+		// Enlever la première ligne et formater les dates
+		$data_bis = [];
+		$date_sort = [];
+		$presences = [];
+		foreach ($datas as $index => $data){
+			if ($index==0) continue;
+			$data_row = [];
+			$presences_row = [];
+			$idx = 0;
+			foreach ($data->getFields() as $key => $item){
+				$presences_row['student_id'] = null;
+				if ($key=='date') {
+					$arr = explode('/', $data->$key);
+					$date = $arr[2].'-'.sprintf('%02d',$arr[0]).'-'.sprintf('%02d',$arr[1]);
+					$data_row[] = $date;
+					$date_sort[$index] = $date;
+					$presences_row['day'] = $date;
+				} else {
+					$value = $data->$key;
+					$data_row[] = $value;
+					$presences_row['student_id'] = getRealStudentId($idx);
+					//echo $idx.' '.getRealStudentId($idx);
+					$presences_row['r1'] = ( strpos($value,'R1')===false ? null : 1 );
+					$presences_row['r2'] = ( strpos($value,'R2')===false ? null : 1 );
+					$presences_row['d1'] = ( strpos($value,'D1')===false ? null : 1 );
+					$presences_row['d2'] = ( strpos($value,'D2')===false ? null : 1 );
+					$presences_row['absent'] = ( $value==0 ? 1 : 0 );
+				}
+				//echo '<pre>'.print_r($presences_row,true).'</pre>';
+				//exit;
+				$presences[] = $presences_row;
+				$idx++;
+			}
+			//if ($index==1) echo '<br>';
+			$data_bis[] = $data_row;
+		}
+
+		// Trier sur les dates
+		array_multisort($date_sort, SORT_ASC, SORT_STRING, $data_bis);
+
+		// Afficher la view
+		$vars = [
+			'datas' => $datas,
+			'presences' => $presences,
+		];
+		$this->render('admin/data', $vars);
 	}
 
 	public function studentcrop() {

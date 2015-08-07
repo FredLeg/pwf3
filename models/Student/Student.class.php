@@ -13,6 +13,7 @@ class Student extends Model {
 	protected $from_city;
 	protected $email;
 	protected $phone;
+	protected $tmp_id;
 
 	private $presence;
 
@@ -37,6 +38,9 @@ class Student extends Model {
 	}
 	public function getPhoto() {
 		return $this->photo;
+	}
+	public function getTmpId() {
+		return $this->tmp_id;
 	}
 	public function getPathPhoto() {
 		if (is_null($this->photo) || empty($this->photo)) {
@@ -104,6 +108,9 @@ class Student extends Model {
 	}
 	public function setPhone($phone) {
 		$this->phone = $phone;
+	}
+	public function setTmpId($tmp_id) {
+		$this->tmp_id = $tmp_id;
 	}
 	public function setPresence($day = null) {
 		if (is_null($day)) {

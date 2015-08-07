@@ -2,11 +2,11 @@
 class User extends Model {
 
 	protected $roles =  [
-		'admin'  => [2, 4, 10, 11],
+		'admin'  => [7,2,4,10,11],
 		'pdt'    => [1],
-		'dir'    => [7, 3, 9],
-		'prof'   => [2, 4, 5, 6, 8],
-		'dev'    => [4, 10, 11],
+		'dir'    => [3,9],
+		'prof'   => [2,4,5,6,8],
+		'dev'    => [7,4,10,11],
 	];
 
 	protected $roles_func =  [

@@ -56,7 +56,8 @@
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Developers<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{$HTTP_ROOT}tests/fred/crop">crop image</a></li>
-                        <li><a href="{$HTTP_ROOT}tests/fred/excel">load excel</a></li>
+                        <li><a href="{$HTTP_ROOT}excel">load excel</a></li>
+                        <li><a href="{$HTTP_ROOT}admin/data">data</a></li>
                     </ul>
                 </li>
                 {/if}

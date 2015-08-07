@@ -1,0 +1,49 @@
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-08-07 16:40:25
+         compiled from "F:\WF3\htdocs\ENV\app\views\partials\debug.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:244755c4c359789122-20222113%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '1327e99fc92222e1b89ab90dfb127e895abbf0c9' => 
+    array (
+      0 => 'F:\\WF3\\htdocs\\ENV\\app\\views\\partials\\debug.tpl',
+      1 => 1438690101,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '244755c4c359789122-20222113',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'profiler' => 0,
+    'debug' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55c4c3597a1091_58886647',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55c4c3597a1091_58886647')) {function content_55c4c3597a1091_58886647($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['profiler']->value)) {?>
+<div class="alert alert-info" role="info">
+	<ul>
+		<li>Memory Usage = <?php echo $_smarty_tpl->tpl_vars['profiler']->value->getMemoryUsage();?>
+</li>
+		<li>Memory Total Usage = <?php echo $_smarty_tpl->tpl_vars['profiler']->value->getMemoryTotalUsage();?>
+</li>
+		<li>Memory Limit = <?php echo $_smarty_tpl->tpl_vars['profiler']->value->getMemoryLimit();?>
+</li>
+		<li>Execution Time = <?php echo $_smarty_tpl->tpl_vars['profiler']->value->getElapsedTime(true);?>
+</li>
+		<li>Execution Time Limit = <?php echo $_smarty_tpl->tpl_vars['profiler']->value->getTimeLimit();?>
+</li>
+	</ul>
+</div>
+<?php }?>
+
+<?php if (!empty($_smarty_tpl->tpl_vars['debug']->value)) {?>
+<div class="alert alert-warning" role="warning">
+<?php echo $_smarty_tpl->tpl_vars['debug']->value;?>
+
+</div>
+<?php }?><?php }} ?>
